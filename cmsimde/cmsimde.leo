@@ -9138,9 +9138,25 @@ def send_static():
 
     """Set css for admin
     """
-
-    server_ip = 'localhost'
-    server_address = str(server_ip) + ":" + str(static_port)
+    
+    server_ip = init.Init.ip
+    # need to check for IPv4 or IPv6
+    # 根據 IP 地址自動選擇 address family
+    try:
+        # 嘗試解析 IP 地址以確定是 IPv4 還是 IPv6
+        socket.inet_pton(socket.AF_INET, server_ip)
+        address_family = socket.AF_INET
+    except socket.error:
+        try:
+            socket.inet_pton(socket.AF_INET6, server_ip)
+            address_family = socket.AF_INET6
+        except socket.error:
+            # 如果都不是有效的 IP，假設是 hostname 或 localhost
+            address_family = socket.AF_INET6 if ':' in server_address else socket.AF_INET
+    if address_family == socket.AF_INET:
+        server_address = str(server_ip) + ":" + str(static_port)
+    else:
+        server_address = "[" + str(server_ip) + "]:" + str(static_port)
 
     outstring = '''&lt;!doctype html&gt;
 &lt;html&gt;&lt;head&gt;
@@ -9204,9 +9220,24 @@ window.location= 'https://' + location.host + location.pathname + location.searc
     """Set css for dynamic site
     """
     
-    # use https://localhost:static_port for static site after start_static starting
-    server_ip = 'localhost'
-    server_address = str(server_ip) + ":" + str(static_port)
+    server_ip = init.Init.ip
+    # need to check for IPv4 or IPv6
+    # 根據 IP 地址自動選擇 address family
+    try:
+        # 嘗試解析 IP 地址以確定是 IPv4 還是 IPv6
+        socket.inet_pton(socket.AF_INET, server_ip)
+        address_family = socket.AF_INET
+    except socket.error:
+        try:
+            socket.inet_pton(socket.AF_INET6, server_ip)
+            address_family = socket.AF_INET6
+        except socket.error:
+            # 如果都不是有效的 IP，假設是 hostname 或 localhost
+            address_family = socket.AF_INET6 if ':' in server_address else socket.AF_INET
+    if address_family == socket.AF_INET:
+        server_address = str(server_ip) + ":" + str(static_port)
+    else:
+        server_address = "[" + str(server_ip) + "]:" + str(static_port)
 
     outstring = '''&lt;!doctype html&gt;
 &lt;html&gt;&lt;head&gt;
@@ -65176,13 +65207,26 @@ token = password_generator()
 本次 2021.07.10 要將用戶選用的標題中特殊符號予以移除</t>
 <t tx="yen.20210906215717.1">@app.route('/start_static/')
 def start_static():
-    """Start local static server in https"""
+    """Start local static server in https with IPv4/IPv6 support"""
     
     if isAdmin():
         try:
-            server_address = 'localhost'
+            # 使用 init.py 中所設定的 IP address
+            server_address = init.Init.ip
             server_port = static_port
-            address_family = socket.AF_INET
+            
+            # 根據 IP 地址自動選擇 address family
+            try:
+                # 嘗試解析 IP 地址以確定是 IPv4 還是 IPv6
+                socket.inet_pton(socket.AF_INET, server_address)
+                address_family = socket.AF_INET
+            except socket.error:
+                try:
+                    socket.inet_pton(socket.AF_INET6, server_address)
+                    address_family = socket.AF_INET6
+                except socket.error:
+                    # 如果都不是有效的 IP，假設是 hostname 或 localhost
+                    address_family = socket.AF_INET6 if ':' in server_address else socket.AF_INET
             
             # 創建 SSL context
             ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
@@ -65201,6 +65245,14 @@ def start_static():
             # 創建 socket 並套用 SSL
             httpd.socket = socket.socket(address_family, socket.SOCK_STREAM)
             httpd.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            
+            # 為 IPv6 添加雙棧支援（如果系統支援）
+            if address_family == socket.AF_INET6:
+                try:
+                    httpd.socket.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_V6ONLY, 0)
+                except (AttributeError, socket.error):
+                    pass  # 如果系統不支援雙棧，就使用純 IPv6
+            
             httpd.socket = ssl_context.wrap_socket(
                 httpd.socket,
                 server_side=True
@@ -65210,7 +65262,9 @@ def start_static():
             httpd.socket.bind((server_address, server_port))
             httpd.server_activate()
             
-            print(f"HTTPS Server started at https://{server_address}:{server_port}")
+            # 根據 address family 顯示適當的協議資訊
+            protocol = "IPv6" if address_family == socket.AF_INET6 else "IPv4"
+            print(f"HTTPS Server started at https://{server_address}:{server_port} using {protocol}")
             httpd.serve_forever()
             
         except ssl.SSLError as e:
