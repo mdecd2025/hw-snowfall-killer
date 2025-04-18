@@ -2,7 +2,7 @@
         <head>
         <title>cd_hw</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -142,21 +142,136 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Task << <a href='Task.html'>Previous</a> <a href='list.html'>Next</a> >> list<br /><h1>Task1</h1>
-<h4>自行製作可攜程式系統</h4>
-<p>此作業的目的在展示如何利用既有的 Python 可攜系統建立各版本的 Python 可攜環境.</p>
-<p>以下為操作步驟:</p>
-<ol>
-<li>下載<span> </span><a href="http://229.cycu.org/portable_python311.7z">portable_python311.7z</a>, 展開後是一套尚未安裝 pip 的 Python 3.11 可攜程式環境.</li>
-<li>雙點擊 portable_python311 目錄中的 start_ipv6.bat 啟動可攜系統, 在 SciTE 中開啟 Y:\<a href="https://mdecd2025.github.io/hw-scrum-1/downloads/gen_python313.py">gen_python313.py</a>, 以下拉式功能表 Tools - Go 執行, 便可在 Y:\ 建立 Python313 目錄.</li>
-<li>接著修改 start_ipv6.bat, 利用 Search - Replace, Find 欄位填上 Python311, Replace 欄位填上 Python313 後, 按下 Replace All, 便可將啟動檔中所有 Python311 設定改為 Python313, 另存修改後的檔案為 start_python313.bat.</li>
-<li>接下來以 stop.bat 關閉 start_ipv6.bat 開啟的可攜系統, 改以心建立的 start_python313.bat 開啟可攜環境, 之後在命令列輸入 python, 確認目前的 Python 版本為 3.13.2 後, 利用 Ctrl + z 退出 Python 後, 利用 pip list 確認目前的 Python 3.13.2 系統尚未配置 pip 模組管理工具.</li>
-<li>在命令列中, 以 python get-pip.py 安裝 pip 工具, 完成後, 以 pip list 確認 pip.exe 已經配置完成.</li>
-<li>最後在命令列中, 以 pip install flask flask_cors bs4 lxml pelican markdown 安裝 cmsimde 網際內容管理系統啟動所需的 Python 模組後, 此可攜系統中的 Python 3.13.2 套件已經可以用來維護個人作業倉儲與分組倉儲.</li>
-<li>之後利用新版的<span> </span><a href="https://www.scintilla.org/SciTEDownload.html">SciTE</a>,<span> </span><a href="https://git-scm.com/downloads/win">Portablegit</a>,<span> </span><a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PUTTY</a>,<span> </span><a href="https://github.com/ShareX/ShareX/releases">ShareX</a>,<span> </span><a href="https://www.debugmode.com/wink.html">Wink</a>,<span> </span><a href="https://solvespace.com/download.pl">Solvespace</a>,<span> </span><a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/zoomit">Zoomit</a>,<span> </span><a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/process-explorer#download">ProcessExplorer</a><span> </span>以及原有的 tmp 及 home_ipv6, 以新的 start_python313 啟動.</li>
-</ol>
-<p>以下為操作影片:</p>
-<br />Task << <a href='Task.html'>Previous</a> <a href='list.html'>Next</a> >> list</div>
+    <div id="tipue_search_content">Task2 << <a href='Task2.html'>Previous</a> <a href='Task3.html'>Next</a> >> Task3<br /><h1>w3</h1>
+<p><button id="ungroupedmember">Ungrouped_member</button></p>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="./../cmsimde/static/brython.js"></script>
+<script src="./../cmsimde/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
+}
+</script>
+</p>
+<p><!-- 導入 FileSaver 與 filereader --></p>
+<p>
+<script src="./../cmsimde/static/ace/FileSaver.min.js" type="text/javascript"></script>
+<script src="./../cmsimde/static/ace/filereader.js" type="text/javascript"></script>
+</p>
+<p><!-- 導入 ace --></p>
+<p>
+<script src="./../cmsimde/static/ace/ace.js" type="text/javascript"></script>
+<script src="./../cmsimde/static/ace/ext-language_tools.js" type="text/javascript"></script>
+<script src="./../cmsimde/static/ace/mode-python3.js" type="text/javascript"></script>
+<script src="./../cmsimde/static/ace/snippets/python.js" type="text/javascript"></script>
+</p>
+<p><!-- 導入 gearUtils-0.9.js Cango 齒輪繪圖程式庫 -->
+<script src="./../cmsimde/static/Cango-24v03-min.js"></script>
+<script src="./../cmsimde/static/gearUtils-09.js"></script>
+<script src="./../cmsimde/static/SVGpathUtils-6v03-min.js"></script>
+<script src="./../cmsimde/static/sylvester.js"></script>
+<script src="./../cmsimde/static/PrairieDraw.js"></script>
+</p>
+<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src1"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
+<p>
+<script type="text/javascript">
+function doSave(storage_id, filename){
+    var blob = new Blob([localStorage[storage_id]], {type: "text/plain;charset=utf-8"});
+    filename = document.getElementById(filename).value
+    saveAs(blob, filename+".py");
+}
+</script>
+</p>
+<p>
+<script type="text/python3">
+from browser import document as doc
+import ace
+# 清除畫布
+def clear_bd1(ev):
+    bd = doc["brython_div1"]
+    bd.clear()
+Ace1 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
+# 從 gist 取出程式碼後, 放入 editor 作為 default 程式
+def run1():
+    # 利用 get 取下 src 變數值
+    try:
+        url = doc.query["src"]
+    except:
+        url = "https://gist.githubusercontent.com/snowfall-killer/04db27631cfb553a0e6f7dd2fc5aa797/raw/9cf2e22d729d617bca48ecaf7ce7a87b35a1cced/cd2025_Ungrouped_member.py"
+    prog = open(url).read()
+
+    # 將程式載入編輯區
+    Ace1.editor.setValue(prog)
+    Ace1.editor.scrollToRow(0)
+    Ace1.editor.gotoLine(0)
+    # 直接執行程式
+    #ns = {'__name__':'__main__'}
+    #exec(prog, ns)
+    # 按下 run 按鈕
+    Ace1.run()
+
+# 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定
+doc['kw_run1'].bind('click', Ace1.run)
+doc['kw_show_console1'].bind('click', Ace1.show_console)
+doc['kw_clear_console1'].bind('click', Ace1.clear_console)
+doc['clear_bd1'].bind('click', clear_bd1)
+# 呼叫函式執行
+run1()
+</script>
+</p>
+<p><!-- Ungrouped_member 開始 -->
+<script type="text/python3">
+from browser import document as doc
+import ace
+
+# 清除畫布
+def clear_bd1(ev):
+    bd = doc["brython_div1"]
+    bd.clear()
+
+# 利用 ace 中的 Editor 建立 Ace2 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
+Ace2 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
+
+ungroupedmember_url = "https://gist.githubusercontent.com/snowfall-killer/04db27631cfb553a0e6f7dd2fc5aa797/raw/9cf2e22d729d617bca48ecaf7ce7a87b35a1cced/cd2025_Ungrouped_member.py"
+
+# 從 gist 取得程式碼
+add_src = open(ungroupedmember_url).read()
+def add(ev):
+    Ace2.editor.setValue(add_src)
+    Ace2.editor.scrollToRow(0)
+    Ace2.editor.gotoLine(0)
+    Ace2.run()
+
+# id 為 "ungroupedmember" 的按鈕點按時, 執行 add 方法
+doc["ungroupedmember"].bind('click', add)
+</script>
+</p>
+<p><!-- Ungrouped_member --></p>
+<!-- editor1 開始 -->
+<p><!-- 用來顯示程式碼的 editor 區域 --></p>
+<div id="kw_editor1" style="width: 900px; height: 600px;"></div>
+<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
+<p><!-- 存擋表單開始 --></p>
+<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src1', 'kw_filename1');" type="submit" value="Save"/></form>
+<p><!-- 存擋表單結束 --></p>
+<p></p>
+<p><!-- 執行與清除按鈕開始 --></p>
+<p><button id="kw_run1">Run</button> <button id="kw_show_console1">Output</button> <button id="kw_clear_console1">清除輸出區</button><button id="clear_bd1">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
+<p><!-- 執行與清除按鈕結束 --></p>
+<p></p>
+<p><!-- 程式執行 ouput 區 --></p>
+<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
+<p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
+<div id="brython_div1"></div>
+<!-- editor1 結束 --><hr/><!-- ########################################## -->
+<p>
+<script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
+</p>
+<br />Task2 << <a href='Task2.html'>Previous</a> <a href='Task3.html'>Next</a> >> Task3</div>
         
     <!-- footer -->
       <div class="container">

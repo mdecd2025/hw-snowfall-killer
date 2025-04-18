@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li class='has-children'><a href='Task.html'>Task</a><ul class='dropdown'><li class='has-children'><a href='Task1.html'>Task1</a><ul class='dropdown'><li><a href='list.html'>list</a><li><a href='Ungrouped member.html'>Ungrouped member</a><li><a href='IPv6.html'>IPv6</a></li></ul><li><a href='Task2.html'>Task2</a><li><a href='Task3.html'>Task3</a></li></ul><li class='has-children'><a href='Homework.html'>Homework</a><ul class='dropdown'><li><a href='HW1.html'>HW1</a><li><a href='HW2.html'>HW2</a><li><a href='HW3.html'>HW3</a></li></ul><li><a href='Midterm.html'>Midterm</a><li class='has-children'><a href='Exam.html'>Exam</a><ul class='dropdown'><li><a href='Exam1.html'>Exam1</a><li><a href='Exam2.html'>Exam2</a><li><a href='Exam3.html'>Exam3</a></li></ul><li><a href='Final.html'>Final</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li class='has-children'><a href='Task.html'>Task</a><ul class='dropdown'><li class='has-children'><a href='Task1.html'>Task1</a><ul class='dropdown'><li><a href='list.html'>list</a><li><a href='IPv6.html'>IPv6</a></li></ul><li class='has-children'><a href='Task2.html'>Task2</a><ul class='dropdown'><li><a href='w3.html'>w3</a></li></ul><li><a href='Task3.html'>Task3</a><li class='has-children'><a href='Task4.html'>Task4</a><ul class='dropdown'><li><a href='w4.html'>w4</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a></li></ul><li><a href='Task5.html'>Task5</a><li><a href='Task6.html'>Task6</a></li></ul><li class='has-children'><a href='Homework.html'>Homework</a><ul class='dropdown'><li><a href='HW1.html'>HW1</a><li><a href='HW2.html'>HW2</a><li><a href='HW3.html'>HW3</a></li></ul><li><a href='Midterm.html'>Midterm</a><li class='has-children'><a href='Exam.html'>Exam</a><ul class='dropdown'><li><a href='Exam1.html'>Exam1</a><li><a href='Exam2.html'>Exam2</a><li><a href='Exam3.html'>Exam3</a></li></ul><li><a href='Final.html'>Final</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -142,8 +142,59 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">IPv6 << <a href='IPv6.html'>Previous</a> <a href='Task3.html'>Next</a> >> Task3<br /><h1>Task2</h1>
-<br />IPv6 << <a href='IPv6.html'>Previous</a> <a href='Task3.html'>Next</a> >> Task3</div>
+    <div id="tipue_search_content">IPv6 << <a href='IPv6.html'>Previous</a> <a href='w3.html'>Next</a> >> w3<br /><h1>Task2</h1>
+<h4>使用 SSH 協定執行作業倉儲的推送</h4>
+<p><a href="https://zh.wikipedia.org/zh-tw/Secure_Shell">SSH</a><span> </span>是一種加密的網路傳輸協定, PuTTY 則是可用於 Windows 環境的 SSH 協定工具, 其中支援遠端登入 (putty.exe) 與檔案傳輸工具 (psftp.exe).</p>
+<p>使用 PuTTY 所建立的公私鑰進行 Github push 認證的步驟:</p>
+<p>第一步:</p>
+<p>若希望在 Windows 環境透過 git 指令, 使用 PuTTY 設定的 session (一個代表連線伺服器主機、私鑰位置與是否使用代理主機等資訊的字串), 執行 push, 必須要在啟動可攜環境時, 設定 GIT_SSH 環境變數, 將此變數指向 PuTTY 套件中的 plink.exe 位置 (也就是 set GIT_SSH=%Disk%:\putty\plink.exe).</p>
+<p>第二步:</p>
+<p>指定利用 PuTTY 的 SSH session 執行 git push 後, 必須在 Windows 操作系統中選擇一個字串, 作為 SSH 連線 session 名稱, 由於此設定必須指向 SSH 協定加密用的私鑰所在目錄位置, 因此設定 session 之前, 必須利用 puttygen.txt 建立一對公私鑰, 其中的公鑰為 OpenSSH 格式, 必須送到使用者 Github 帳號設定區 (Settings) 的 SSH and GPG keys 中.</p>
+<p>第三步:</p>
+<p>利用 puttygen.exe 建立公私鑰的方法, 是在執行 puttygen.exe 之後, 以滑鼠按下 Generate 之後, 讓滑鼠在 puttgen.exe 視窗中 key 下方的空白區域隨意移動, puttygen.exe 會根據滑鼠移動的位置隨機建立 OpenSSH 格式的公鑰, 以及配對的 PuTTY 格式的 Private Key (副檔名為 .ppk)</p>
+<p>第四步:</p>
+<p>接下來, 將 OpenSSH 格式的 Public Key 內容複製到個人 Github 帳號設定區的 SSH and GPG keys 中, 並以 puttygen.exe 執行視窗右下方的 Save private key 按鈕, 將私鑰 (假設為 myprivatekey.ppk) 存至 Y:\.</p>
+<p>第五步:</p>
+<p>接著啟動 PuTTY 中的 putty.exe, 在 Host Name (or IP Address) 欄位填入 github.com, 並確認 Connection Type 選用 SSH, 表示要透過 SSH 加密協定連線到 github.com.</p>
+<p>第六步:</p>
+<p>接著在 putty.exe 視窗下方的 Saved Sessions 填入一組字串, 此字串就是之後要遠端登入 github.com 設定 push 連線 URL 的 session 名稱, 在此假設選擇 "mysession" 作為 session 名稱, 使用者可以自行選擇具有代表性的字串, 例如: 學號或簡短的英文姓名縮寫.</p>
+<p>第七步:</p>
+<p>在 putty.exe 視窗中填入 github.com 與 "mysession" 名稱之後, 點擊 Save 之後, 此 session 設定就會被 Windows 操作系統存入該台電腦的 Registry 登錄檔案中的 HKEY_CURRENT_USER - SOFTWARE - SimonTatham 所在組態區. 此時可以在命令列中輸入 regedit 後進入登錄檔查看是否 mysession 已經存在.</p>
+<p>第八步:</p>
+<p>上列 "mysession" 設定完成且按下 Save 之後, 若再按下 Open, 採用 IPv4 網路連線的電腦應該已經可以透過 putty.exe 遠端連線至 github.com, 視窗中會出現 github.com 作為視窗標題, 且內容為 login as: 但一般使用者並沒有帳號可以直接透過 putty.exe 遠端登入到 github.com, 而只能在 session 設定完成後, 利用此 session 執行 git push.</p>
+<p>第九步:</p>
+<p>由於前面的 "mysession" 雖然已經存入 Windows 操作系統的登錄檔, 但並沒有設定 private key 的位置, 因此接下來要再開啟 putty.exe, load 進此一 session, 然後在此 session 設定左方的 Category: 下方的 Connection - SSH - Auth - Credentials 設定中的 Private key file for authentication: 區, 利用 Browse 選擇位於 Y:\ 的 myprivatekey.ppk 檔案. 選擇檔案完成後, 必須再回到 Catetory: 下方的 Session 區, 以右方的 Save 將附加私鑰位置設定的 session 存檔. 此時 Windows 登錄檔中的 "mysession" 除了代表要使用 SSH 連線到 github.com 之外, 還附帶指定了 myprivatekey.ppk 在 Y:\ 的位置.</p>
+<p>第十步:</p>
+<p>若上述設定是在電腦輔助設計室中的電腦進行, 必須利用命令列 regedit 指令, 進入 HKEY_CURRENT_USER - SOFTWARE - SimonTatham 位置, 利用滑鼠右鍵將此登錄設定檔案"匯出" 存入可攜程式 start_ipv6.bat 所在目錄, 此處假設命名為 mysession.reg, 使用者可以自行對 .reg 命名.</p>
+<p>第十一步:</p>
+<p>由於上列的 myprivatekey.ppk 存於可攜程式中的 Y:\, 因此當使用者利用 start_ipv6.bat 啟動可攜程式後, 就可以利用滑鼠雙點擊位於同目錄的 mysession.reg, 上述的 "mysession" 設定就會存入 Windows 操作系統的登錄檔中.</p>
+<p>使用 PuTTY session 設定倉儲 .git/config 中的 URL</p>
+<p>假設上列 "mysession" 對應中的 OpenSSH 格式公鑰是送到 Github 帳號為 scrum-1 學員的 SSH and GPG key 區域, 則 scrum-1 學員在啟動可攜系統後, 已經雙點擊 mysession.reg, 將前述 putty.exe 設定的 session 組態登錄設定回存至 Windows 操作系統中, 則 scrum-1 學員就可以將其近端作業倉儲中的 mysession 用於倉儲 .git/config 檔案的下方設定:</p>
+<div>
+<div class="syntaxhighlighter js" id="highlighter_649264">
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+<div class="line number3 index2 alt2">3</div>
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="js plain">[remote </code><code class="js string">"origin"</code><code class="js plain">]</code></div>
+<div class="line number2 index1 alt1"><code class="js spaces">    </code><code class="js plain">url = git@mysession:mdecd2025/hw-scrum-1.git</code></div>
+<div class="line number3 index2 alt2"><code class="js spaces">    </code><code class="js plain">fetch = +refs/heads/:refs/remotes/origin/</code></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>其中的 [remote "origin"] 表示當使用 git 指令中針對此倉儲 "origin" 是一個與遠端倉儲對應的字串代號, 代表其下兩項設定. url 代表此 "origin" 的倉儲連線網址, 而連線至此倉儲的協定是採遠端登入 (使用 Github 支援的 SSH 遠端登入協定), 且此遠端登入的帳號為 "git", 這是所有要使用 SSH 執行 git push 的用戶共同使用的登入帳號.</p>
+<p>url 設定中 "@" 之後的 "mysession" 就是宣告要使用此電腦登錄檔中所設定的 session 名稱 (代表要連線到 github.com, 且帶的 myprivatekey.ppk, 準備在登入流程中與 github.com 中 mdewcm2025 帳號下的 hw-scrum-1 倉儲擁有者 (或帶有 repo 管理權限的帳號) 所登錄的 public keys 進行認證比對, 一旦通過認證, git push 指令就可以成功將改版資料推送到指定的倉儲區域.</p>
+<br />IPv6 << <a href='IPv6.html'>Previous</a> <a href='w3.html'>Next</a> >> w3</div>
         
     <!-- footer -->
       <div class="container">

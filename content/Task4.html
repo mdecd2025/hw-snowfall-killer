@@ -142,21 +142,12 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Task << <a href='Task.html'>Previous</a> <a href='list.html'>Next</a> >> list<br /><h1>Task1</h1>
-<h4>自行製作可攜程式系統</h4>
-<p>此作業的目的在展示如何利用既有的 Python 可攜系統建立各版本的 Python 可攜環境.</p>
-<p>以下為操作步驟:</p>
-<ol>
-<li>下載<span> </span><a href="http://229.cycu.org/portable_python311.7z">portable_python311.7z</a>, 展開後是一套尚未安裝 pip 的 Python 3.11 可攜程式環境.</li>
-<li>雙點擊 portable_python311 目錄中的 start_ipv6.bat 啟動可攜系統, 在 SciTE 中開啟 Y:\<a href="https://mdecd2025.github.io/hw-scrum-1/downloads/gen_python313.py">gen_python313.py</a>, 以下拉式功能表 Tools - Go 執行, 便可在 Y:\ 建立 Python313 目錄.</li>
-<li>接著修改 start_ipv6.bat, 利用 Search - Replace, Find 欄位填上 Python311, Replace 欄位填上 Python313 後, 按下 Replace All, 便可將啟動檔中所有 Python311 設定改為 Python313, 另存修改後的檔案為 start_python313.bat.</li>
-<li>接下來以 stop.bat 關閉 start_ipv6.bat 開啟的可攜系統, 改以心建立的 start_python313.bat 開啟可攜環境, 之後在命令列輸入 python, 確認目前的 Python 版本為 3.13.2 後, 利用 Ctrl + z 退出 Python 後, 利用 pip list 確認目前的 Python 3.13.2 系統尚未配置 pip 模組管理工具.</li>
-<li>在命令列中, 以 python get-pip.py 安裝 pip 工具, 完成後, 以 pip list 確認 pip.exe 已經配置完成.</li>
-<li>最後在命令列中, 以 pip install flask flask_cors bs4 lxml pelican markdown 安裝 cmsimde 網際內容管理系統啟動所需的 Python 模組後, 此可攜系統中的 Python 3.13.2 套件已經可以用來維護個人作業倉儲與分組倉儲.</li>
-<li>之後利用新版的<span> </span><a href="https://www.scintilla.org/SciTEDownload.html">SciTE</a>,<span> </span><a href="https://git-scm.com/downloads/win">Portablegit</a>,<span> </span><a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PUTTY</a>,<span> </span><a href="https://github.com/ShareX/ShareX/releases">ShareX</a>,<span> </span><a href="https://www.debugmode.com/wink.html">Wink</a>,<span> </span><a href="https://solvespace.com/download.pl">Solvespace</a>,<span> </span><a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/zoomit">Zoomit</a>,<span> </span><a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/process-explorer#download">ProcessExplorer</a><span> </span>以及原有的 tmp 及 home_ipv6, 以新的 start_python313 啟動.</li>
-</ol>
-<p>以下為操作影片:</p>
-<br />Task << <a href='Task.html'>Previous</a> <a href='list.html'>Next</a> >> list</div>
+    <div id="tipue_search_content">Task3 << <a href='Task3.html'>Previous</a> <a href='w4.html'>Next</a> >> w4<br /><h1>Task4</h1>
+<p>原先想法:</p>
+<p>因為隨後可以透過比對取得尚未納組的學員 Github 帳號, 且必須設法從其 Github 帳號, 取得其對應學號, 因此若能從上列程式設法建立一個 Dict, 支援輸入 Github  帳號可以回覆其對應學號, 就可以順利找出目前尚未納組的學員學號. 另外是否也必須查驗是否有學員加入錯誤的班級組別?</p>
+<p>實際解法:</p>
+<p>因為上列程式已經給出兩班當時已經參與分組的學員 Github 帳號, 因此只需要從<span> </span><a href="https://mde.tw/list/2b.txt">https://mde.tw/list/2b.txt</a> 讀取學員的學號與 Github 帳號, 並且在 for 迴圈中, 逐一用學員的 Github 帳號相對於各班已經參與分組的學員 Github 帳號, 並且列出特定學員的 Github 帳號不在前述已經參與分組的學員帳號數列中, 即可列出截至當時尚未那組的學員學號.</p>
+<br />Task3 << <a href='Task3.html'>Previous</a> <a href='w4.html'>Next</a> >> w4</div>
         
     <!-- footer -->
       <div class="container">
