@@ -110,6 +110,19 @@ def clear_bd1(ev):
 # 利用 ace 中的 Editor 建立 Ace2 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
 Ace2 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
 
+# 透過 Ace2 以類別建立一個通用的 button2, 可以在多個案例中將 gist 程導入編輯區
+
+class button2:
+    def __init__(self, url):
+        self.url = url
+
+    # 記得加入 event 輸入變數
+    def do(self,ev):
+        Ace2.editor.setValue(open(self.url).read())
+        Ace2.editor.scrollToRow(0)
+        Ace2.editor.gotoLine(0)
+        Ace2.run()
+
 cd2025students_url = "https://gist.githubusercontent.com/snowfall-killer/61fa9780a59be3e44f8653f0a66e49dc/raw/1b1c9b3407a46b492ecc1986905cc43562c0ad66/cd2025_student.py"
 
 # 從 gist 取得程式碼
@@ -397,7 +410,9 @@ doc["ungroupedmember"].bind('click', add)
 <!-- editor1 結束 --><hr/><!-- ########################################## -->
 <p>
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
-</p><h2>Task2</h2>
+</p>
+<h3>IPv6</h3>
+<p>以管理員身分執行→create_account.bat<br/>以管理員身分執行→ipv6set_up.bat<br/>ipv6Address = "2001:288:6004:17:b009"</p><h2>Task2</h2>
 <h2>Task3</h2>
 <h1>Homework</h1>
 <p>作業 (30%)</p>
