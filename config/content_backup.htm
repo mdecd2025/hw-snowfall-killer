@@ -485,28 +485,97 @@ doc["ungroupedmember"].bind('click', add)
 <h4>使用 Solvespace 建立平面四連桿系統零組件 (HW2)</h4>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/5T9aehWOFcg?si=lwTzp6IGr7HgYLXv" title="YouTube video player" width="560"></iframe></p>
 <p>Geogebra紅點移動軌跡：</p>
-<p><img alt="" height="315" src="/images/four_linkage_geogebra.gif" width="560"/></p><h2>Task4</h2>
+<p><img alt="" height="315" src="/images/four_linkage_geogebra.gif" width="560"/></p>
+<h2>Task4</h2>
 <p>原先想法:</p>
 <p>因為隨後可以透過比對取得尚未納組的學員 Github 帳號, 且必須設法從其 Github 帳號, 取得其對應學號, 因此若能從上列程式設法建立一個 Dict, 支援輸入 Github  帳號可以回覆其對應學號, 就可以順利找出目前尚未納組的學員學號. 另外是否也必須查驗是否有學員加入錯誤的班級組別?</p>
 <p>實際解法:</p>
 <p>因為上列程式已經給出兩班當時已經參與分組的學員 Github 帳號, 因此只需要從<span> </span><a href="https://mde.tw/list/2b.txt">https://mde.tw/list/2b.txt</a> 讀取學員的學號與 Github 帳號, 並且在 for 迴圈中, 逐一用學員的 Github 帳號相對於各班已經參與分組的學員 Github 帳號, 並且列出特定學員的 Github 帳號不在前述已經參與分組的學員帳號數列中, 即可列出截至當時尚未那組的學員學號.</p>
 <h3>w4</h3>
 <h3>w5</h3>
-<h3>w6</h3><h2>Task5</h2>
+<h3>w6</h3>
+<h2>Task5</h2>
 <h4>Webots Tutorial 1 ~3 (HW3)</h4>
 <p><a href="https://cyberbotics.com/doc/guide/introduction-to-webots" target="_blank">https://cyberbotics.com/doc/guide/introduction-to-webots</a></p>
 <ol>
-<ol>
 <li>請用繁體中文詳細說明下列資料:<span> </span><a href="https://cyberbotics.com/doc/guide/introduction-to-webots" target="_blank">https://cyberbotics.com/doc/guide/introduction-to-webots </a>
-<p><strong>什麼是 Webots？</strong><br/>Webots 是一套專業的移動機器人模擬軟體。它提供一個快速原型設計的環境，允許使用者建立具備物理屬性的 3D 虛擬世界，例如質量、關節、摩擦係數等。 使用者可以加入被動物件（如障礙物）或主動物件（稱為移動機器人）。這些機器人可以採用不同的移動方式（如輪式、步行式或飛行型）。此外，它們可以配備多種感測器與致動器裝置，例如：距離感測器、驅動輪、攝影機、馬達、觸碰感測器、訊號發射器與接收器等。 最終，使用者可以為每個機器人撰寫個別的控制程式，實現預期的行為。Webots 內建大量的機器人模型與控制器程式範例，可協助使用者快速上手。 Webots 也提供與真實移動機器人的接口，因此當模擬中的機器人表現如預期時，可以將其控制程式轉移至實體機器人，如 e-puck、DARwIn-OP、Nao 等。若有需要，也可自行開發與新增新的機器人接口。<br/><strong>我可以用 Webots 做什麼？</strong><br/>Webots 特別適合用於與移動機器人相關的<strong>研究與教育專案</strong>。多年來，許多研究與應用都依賴 Webots，範圍包括： - 移動機器人原型設計（學術研究、汽車產業、航空產業、吸塵器產業、玩具產業、業餘愛好者等） - 機器人移動研究（如步行、仿人、四足機器人等） - 多代理系統研究（群體智慧、協作型移動機器人等） - 適應性行為研究（遺傳演算法、神經網路、人工智慧等） - 教學用途（機器人學課程、C/C++/Java/Python 課程等） - 機器人競賽（如 Robotstadium、Rat’s Life 等）<br/><strong>使用 Webots 需要具備哪些知識？</strong><br/>若要開發自己的模擬專案，您需要具備以下基本技術知識： - <strong>程式語言基礎</strong>：您需要具備 C、C++、Java、Python 或 MATLAB 的基本程式設計知識，以撰寫機器人的控制程式。不過，即使您不熟悉這些語言，也可以使用名為<strong>BotStudio</strong>的圖形化編程工具，來編程 e-puck 或 Hemisson 機器人。 - <strong>3D 建模基礎（選擇性）</strong>：若您想自訂機器人模型或在模擬環境中新增特殊物件，您需瞭解基本的 3D 圖形與 VRML97 描述語言。這將協助您自行建立 3D 模型，或從其他建模軟體匯入模型。<br/><strong>如何獲得使用者支援？</strong><br/>Cyberbotics 提供付費的<strong>Premier Service 計畫</strong>與<strong>客製化開發服務</strong>。 此外，也有以下社群支援資源（但無保證一定會得到回覆）： - [Robotics StackExchange](https://robotics.stackexchange.com/questions/tagged/webots)：最佳的技術問題發問平台。 - [GitHub Discussions](https://github.com/cyberbotics/webots/discussions)：可用於關於 Webots 開發與文件的討論。 - [GitHub Issues](https://github.com/cyberbotics/webots/issues)：僅用來回報 Webots 的錯誤。 - [Webots Discord](https://discord.com/invite/nxweYMW)：用於快速問答與即時討論。 <br/><strong>什麼是 Webots 模擬？</strong><br/> Webots 的模擬包含以下要素： - <strong>世界檔 (.wbt)</strong>：定義一個或多個機器人及其環境。此檔案可能依賴外部的<strong>PROTO 檔案 (.proto)</strong>和<strong>貼圖素材</strong>。 - <strong>控制器程式</strong>：針對上述機器人撰寫的程式（可使用 C/C++/Java/Python/MATLAB）。 - <strong>物理外掛（選用）</strong>：可用 C/C++ 編寫，以修改 Webots 的預設物理行為。<br/><strong>什麼是「世界」（World）？</strong><br/>在 Webots 中，「世界」是對機器人與環境屬性的 3D 描述。它包含每個物件的： - 位置與方向 - 幾何形狀與外觀（如顏色、亮度） - 物理屬性 - 物件類型（如機器人、障礙物） 世界是階層式結構（類似 VRML97），例如：一個機器人可包含兩個輪子、一個距離感測器與一個含攝影機的關節。 <strong>世界檔</strong>不包含控制器程式碼，它只指定每個機器人所需對應的控制器名稱。這些檔案儲存為「.wbt」格式，並放在每個 Webots 專案的 `worlds` 子資料夾中。 --- ### 🤖 **什麼是控制器（Controller）？** 控制器是一段控制模擬中機器人的程式碼，可使用 Webots 支援的任一語言編寫（C、C++、Java、Python、MATLAB）。 當模擬啟動時，Webots 為每個指定的控制器啟動一個獨立程序，並將其與對應的機器人關聯。多個機器人可以共用同一段控制程式，但每台機器人仍會啟動自己的執行程序。 程式語言的處理方式如下： - C 與 C++：<strong>需編譯</strong>為平台依賴的可執行檔（如 Windows 的 `.exe`） - Python 與 MATLAB：<strong>需直譯</strong>執行（需安裝相應的執行環境） - Java：<strong>需先編譯為位元碼</strong>（如 `.class` 或 `.jar`），再由 Java 虛擬機（JVM）執行 控制器的原始碼與編譯檔案會被儲存在「controllers」子資料夾內的控制器目錄中。<br/><strong>什麼是 Supervisor Controller（監督控制器）？</strong><br/> Supervisor Controller 是設定為具有「supervisor = TRUE」屬性的機器人的控制程式。它可執行一般機器人無法執行的「特權操作」，如： - 控制整個模擬的狀態 - 移動機器人到隨機位置 - 錄製模擬影像 它可以使用與一般控制器相同的語言撰寫，但具備額外權限，適用於進階模擬控制與管理用途。</p>
+<ul>
+<li><strong>什麼是 Webots？</strong><br/>Webots 是一套專業的移動機器人模擬軟體。它提供一個快速原型設計的環境，允許使用者建立具備物理屬性的 3D 虛擬世界，例如質量、關節、摩擦係數等。 使用者可以加入被動物件（如障礙物）或主動物件（稱為移動機器人）。這些機器人可以採用不同的移動方式（如輪式、步行式或飛行型）。此外，它們可以配備多種感測器與致動器裝置，例如：距離感測器、驅動輪、攝影機、馬達、觸碰感測器、訊號發射器與接收器等。 最終，使用者可以為每個機器人撰寫個別的控制程式，實現預期的行為。Webots 內建大量的機器人模型與控制器程式範例，可協助使用者快速上手。 Webots 也提供與真實移動機器人的接口，因此當模擬中的機器人表現如預期時，可以將其控制程式轉移至實體機器人，如 e-puck、DARwIn-OP、Nao 等。若有需要，也可自行開發與新增新的機器人接口。</li>
+<li><strong>我可以用 Webots 做什麼？</strong><br/>Webots 特別適合用於與移動機器人相關的<strong>研究與教育專案</strong>。多年來，許多研究與應用都依賴 Webots，範圍包括： - 移動機器人原型設計（學術研究、汽車產業、航空產業、吸塵器產業、玩具產業、業餘愛好者等） - 機器人移動研究（如步行、仿人、四足機器人等） - 多代理系統研究（群體智慧、協作型移動機器人等） - 適應性行為研究（遺傳演算法、神經網路、人工智慧等） - 教學用途（機器人學課程、C/C++/Java/Python 課程等） - 機器人競賽（如 Robotstadium、Rat’s Life 等）</li>
+</ul>
+<ul>
+<li><strong>使用 Webots 需要具備哪些知識？</strong><br/>若要開發自己的模擬專案，您需要具備以下基本技術知識： -<strong>程式語言基礎</strong>：您需要具備 C、C++、Java、Python 或 MATLAB 的基本程式設計知識，以撰寫機器人的控制程式。不過，即使您不熟悉這些語言，也可以使用名為<strong>BotStudio</strong>的圖形化編程工具，來編程 e-puck 或 Hemisson 機器人。 -<strong>3D 建模基礎（選擇性）</strong>：若您想自訂機器人模型或在模擬環境中新增特殊物件，您需瞭解基本的 3D 圖形與 VRML97 描述語言。這將協助您自行建立 3D 模型，或從其他建模軟體匯入模型。</li>
+</ul>
+<ul>
+<li><strong>如何獲得使用者支援？</strong><br/>Cyberbotics 提供付費的<strong>Premier Service 計畫</strong>與<strong>客製化開發服務</strong>。 此外，也有以下社群支援資源（但無保證一定會得到回覆）： - [Robotics StackExchange](https://robotics.stackexchange.com/questions/tagged/webots)：最佳的技術問題發問平台。 - [GitHub Discussions](https://github.com/cyberbotics/webots/discussions)：可用於關於 Webots 開發與文件的討論。 - [GitHub Issues](https://github.com/cyberbotics/webots/issues)：僅用來回報 Webots 的錯誤。 - [Webots Discord](https://discord.com/invite/nxweYMW)：用於快速問答與即時討論。</li>
+</ul>
+<ul>
+<li><strong>什麼是 Webots 模擬？</strong><br/>Webots 的模擬包含以下要素： -<strong>世界檔 (.wbt)</strong>：定義一個或多個機器人及其環境。此檔案可能依賴外部的<strong>PROTO 檔案 (.proto)</strong>和<strong>貼圖素材</strong>。 -<strong>控制器程式</strong>：針對上述機器人撰寫的程式（可使用 C/C++/Java/Python/MATLAB）。 -<strong>物理外掛（選用）</strong>：可用 C/C++ 編寫，以修改 Webots 的預設物理行為。</li>
+</ul>
+<ul>
+<li><strong>什麼是「世界」（World）？</strong><br/>在 Webots 中，「世界」是對機器人與環境屬性的 3D 描述。它包含每個物件的： - 位置與方向 - 幾何形狀與外觀（如顏色、亮度） - 物理屬性 - 物件類型（如機器人、障礙物） 世界是階層式結構（類似 VRML97），例如：一個機器人可包含兩個輪子、一個距離感測器與一個含攝影機的關節。<strong>世界檔</strong>不包含控制器程式碼，它只指定每個機器人所需對應的控制器名稱。這些檔案儲存為「.wbt」格式，並放在每個 Webots 專案的 `worlds` 子資料夾中。</li>
+</ul>
+<ul>
+<li><strong>什麼是控制器（Controller）？</strong><br/>控制器是一段控制模擬中機器人的程式碼，可使用 Webots 支援的任一語言編寫（C、C++、Java、Python、MATLAB）。 當模擬啟動時，Webots 為每個指定的控制器啟動一個獨立程序，並將其與對應的機器人關聯。多個機器人可以共用同一段控制程式，但每台機器人仍會啟動自己的執行程序。 程式語言的處理方式如下： - C 與 C++：<strong>需編譯</strong>為平台依賴的可執行檔（如 Windows 的 `.exe`） - Python 與 MATLAB：<strong>需直譯</strong>執行（需安裝相應的執行環境） - Java：需先編譯為位元碼（如 `.class` 或 `.jar`），再由 Java 虛擬機（JVM）執行 控制器的原始碼與編譯檔案會被儲存在「controllers」子資料夾內的控制器目錄中。</li>
+</ul>
+<ul>
+<li><strong>什麼是 Supervisor Controller（監督控制器）？</strong><br/>Supervisor Controller 是設定為具有「supervisor = TRUE」屬性的機器人的控制程式。它可執行一般機器人無法執行的「特權操作」，如： - 控制整個模擬的狀態 - 移動機器人到隨機位置 - 錄製模擬影像 它可以使用與一般控制器相同的語言撰寫，但具備額外權限，適用於進階模擬控制與管理用途。</li>
+</ul>
 </li>
 <li>請整理<span> </span><a href="https://cyberbotics.com/doc/guide/introduction-to-webots" target="_blank">https://cyberbotics.com/doc/guide/introduction-to-webots</a><span> </span>中重要的英文單字與用法, 並且針對其中所使用的英文文法逐句說明.</li>
 <li>請摘要出下列內容: (放入英文文章內容)</li>
+<ul>
+<li><strong>What is Webots?</strong><br/> Webots is a <strong>professional robot simulation software</strong> for creating 3D virtual environments with physics. You can simulate robots (wheeled, legged, flying) with sensors and actuators like cameras, motors, and distance sensors. It supports programming each robot's behavior individually. <br/><br/> <strong>Main Features:</strong>
+<ul>
+<li>Rapid prototyping with physics-based simulation</li>
+<li>Multiple robot types and movement systems</li>
+<li>Programmable in C, C++, Java, Python, MATLAB</li>
+<li>Includes many robot models and controller examples</li>
+</ul>
+<strong>Applications:</strong>
+<ul>
+<li>Academic and industrial robot prototyping</li>
+<li>Locomotion and multi-agent system research</li>
+<li>Adaptive behavior using AI methods</li>
+<li>Teaching robotics and programming</li>
+<li>Robot competitions</li>
+</ul>
+<strong>What You Need to Know:</strong>
+<ul>
+<li>Basic coding skills in supported languages</li>
+<li>Optional 3D modeling knowledge (VRML97) for custom robots or objects</li>
+</ul>
+<strong>Support:</strong>
+<ul>
+<li>Paid support from Cyberbotics</li>
+<li>Community support via StackExchange, GitHub, Discord</li>
+</ul>
+<strong>Simulation Components:</strong>
+<ul>
+<li><strong>World file (.wbt)</strong>: Describes environment and robot structure</li>
+<li><strong>Controller programs</strong>: Control robot behavior</li>
+<li><strong>Physics plugin (optional)</strong>: Customize physics interactions</li>
+</ul>
+<strong>Controller Types:</strong>
+<ul>
+<li><strong>Regular controllers</strong>: One per robot, written in supported languages</li>
+<li><strong>Supervisor controllers</strong>: Have special privileges (e.g., reposition robots, record videos)</li>
+</ul>
+</li>
+</ul>
 <li>請列出上述文章中的重要的英文單字與解釋, 以及出現在文句中的用法:</li>
 <li>請詳細說明如何採手動方式在 Webots 建立下列場景:</li>
 <li>希望可以手把手一步步說明該如何利用圖形介面 menu 建立這個場景, 過程中有那些要點必須特別注意?</li>
-</ol>
 </ol><h2>Task6</h2>
+<h4>Webots Tutorial 4 ~6 (HW3)</h4>
+<p>Webots 啟動時，同時啟動串流伺服器指令: webotsw --stream</p>
+<p>內建埠號為 1234，由於採用 WebGL2 進行網頁著色，因此在 Windows 環境中使用 Edge 連線至<span> </span><a href="http://localhost:1234/">http://localhost:1234</a> 或<span> </span><a href="http://stream_server_ip:1234/">http://stream_server_ip:1234</a><span> </span>將會較為順暢.</p>
+<p>至於希望利用 display 展示投籃成績的方法，僅能在近端 Webots 套件中檢視，因此若要讓記分板或計時器能在串流瀏覽器中展示，必須採用 7 段顯示器設置，並利用 supervisor 模式進行操控.</p>
+<p>利用 Solvespace 繪製的 7 段顯示器零組件檔案: <a href="https://mdecd2025.github.io/hw-scrum-1/downloads/score_counter.7z">score_counter.7z</a></p>
+<p>若要在 Webots 中利用變顏色的 .obj 零件顯示數字, 可以透過 Solid - Shape - Mesh 然後將 url 指向 7 段顯示器中的 a ~ g 零件, 並且利用 controller 改變各零件的顏色.</p>
+<p>利用 r, b, y, g 按鍵改變 7 段顯示器中的 f 零件示範場景: <a href="https://mdecd2025.github.io/hw-scrum-1/downloads/7_segment_display.7z">7_segment_display.7z</a>, 執行結果如下:</p>
+<p><img alt="" height="328" src="https://mdecd2025.github.io/hw-scrum-1/images/solid_shape_mesh_color_changed.gif" width="400"/></p>
+<p><a href="https://mdecd2025.github.io/hw-scrum-1/downloads/three_digit_counter.7z">three_digit_counter.7z</a></p>
 <h1>Homework</h1>
 <p>作業 (30%)</p>
 <p>HW1 (5%): <span style="background-color: #ffff00;">建立由 Box 組成的平面四連桿機構 Webots 模擬場景</span></p>

@@ -143,6 +143,15 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">Task5 << <a href='Task5.html'>Previous</a> <a href='Homework.html'>Next</a> >> Homework<br /><h1>Task6</h1>
+<h4>Webots Tutorial 4 ~6 (HW3)</h4>
+<p>Webots 啟動時，同時啟動串流伺服器指令: webotsw --stream</p>
+<p>內建埠號為 1234，由於採用 WebGL2 進行網頁著色，因此在 Windows 環境中使用 Edge 連線至<span> </span><a href="http://localhost:1234/">http://localhost:1234</a> 或<span> </span><a href="http://stream_server_ip:1234/">http://stream_server_ip:1234</a><span> </span>將會較為順暢.</p>
+<p>至於希望利用 display 展示投籃成績的方法，僅能在近端 Webots 套件中檢視，因此若要讓記分板或計時器能在串流瀏覽器中展示，必須採用 7 段顯示器設置，並利用 supervisor 模式進行操控.</p>
+<p>利用 Solvespace 繪製的 7 段顯示器零組件檔案: <a href="https://mdecd2025.github.io/hw-scrum-1/downloads/score_counter.7z">score_counter.7z</a></p>
+<p>若要在 Webots 中利用變顏色的 .obj 零件顯示數字, 可以透過 Solid - Shape - Mesh 然後將 url 指向 7 段顯示器中的 a ~ g 零件, 並且利用 controller 改變各零件的顏色.</p>
+<p>利用 r, b, y, g 按鍵改變 7 段顯示器中的 f 零件示範場景: <a href="https://mdecd2025.github.io/hw-scrum-1/downloads/7_segment_display.7z">7_segment_display.7z</a>, 執行結果如下:</p>
+<p><img alt="" height="328" src="https://mdecd2025.github.io/hw-scrum-1/images/solid_shape_mesh_color_changed.gif" width="400"/></p>
+<p><a href="https://mdecd2025.github.io/hw-scrum-1/downloads/three_digit_counter.7z">three_digit_counter.7z</a></p>
 <br />Task5 << <a href='Task5.html'>Previous</a> <a href='Homework.html'>Next</a> >> Homework</div>
         
     <!-- footer -->
