@@ -492,7 +492,111 @@ doc["ungroupedmember"].bind('click', add)
 <p>實際解法:</p>
 <p>因為上列程式已經給出兩班當時已經參與分組的學員 Github 帳號, 因此只需要從<span> </span><a href="https://mde.tw/list/2b.txt">https://mde.tw/list/2b.txt</a> 讀取學員的學號與 Github 帳號, 並且在 for 迴圈中, 逐一用學員的 Github 帳號相對於各班已經參與分組的學員 Github 帳號, 並且列出特定學員的 Github 帳號不在前述已經參與分組的學員帳號數列中, 即可列出截至當時尚未那組的學員學號.</p>
 <h3>w4</h3>
-<h3>w5</h3>
+<p>已知目前的學員作業倉儲無法在 IPv6 位址設定時正確運作, 各學員必須下載<span> </span><a href="http://229.cycu.org/cmsimde_w4.7z">cmsimde_w4.7z</a>, 解開壓縮檔案後, 替換倉儲中的 cmsimde 目錄.</p>
+<p>開始建立 Webots 模擬場景:<span> </span><a href="https://github.com/mdecycu/cd2025/discussions/2">w4 開始的練習</a></p>
+<p><span>為什麼建立 Webots 場景需要先建立 Robot 物件?</span></p>
+<p>在 Webots 中，建立場景時需要先建立一個 Robot 物件的原因，與 Webots 的模擬架構和工作原理密切相關。以下是詳細解釋：</p>
+<p><br/>1. Webots 的核心設計理念<br/><br/>Webots 是一個用於模擬機器人行為的平台，它的場景（world）是由多個物件（nodes）組成的樹狀結構。而 Robot 物件是一個特殊的節點（node），它不僅代表一個實體機器人，還承載了與模擬環境交互的核心功能，例如感測器、執行器和控制器。沒有 Robot 物件，場景就缺少一個主體來執行具體的任務或行為，模擬也就失去了意義。</p>
+<p>2. Robot 物件的功能<br/><br/>    控制器綁定：每個 Robot 物件都需要指定一個控制器（controller），這是用來定義機器人行為的程式（可以用 C、C++、Python 等語言編寫）。沒有 Robot，就無法運行控制器，也無法模擬機器人的動作或決策。<br/>    感測器與執行器：Robot 物件是感測器（例如攝影機、距離感測器）和執行器（例如馬達、輪子）的容器。這些設備必須依附於一個 Robot 節點才能運作。<br/>    物理屬性：Robot 物件定義了機器人在模擬環境中的物理存在，例如位置、質量和形狀。如果沒有這個物件，場景中就沒有可以與物理引擎交互的實體。<br/><br/>3. 場景的結構要求<br/><br/>在 Webots 中，場景檔案（.wbt 檔案）是一個層次化的描述，所有的節點都必須遵循一定的語法規則。Robot 節點通常作為場景中的頂層節點之一，直接或間接連接到根節點（World）。如果沒有 Robot，場景可能只包含靜態物件（例如牆壁或地板），但無法進行動態模擬，因為缺少能夠主動參與模擬的實體。</p>
+<p>4. 實際操作中的必要性<br/><br/>當你建立一個 Webots 場景時，通常的目的是模擬某個機器人的行為（例如移動、避障、抓取物品等）。因此，第一步通常是定義一個 Robot 物件，然後在這個物件下添加必要的子節點（例如 DifferentialWheels、感測器等），以實現模擬目標。換句話說，Robot 是場景的起點，沒有它，後續的配置就無從談起。</p>
+<p>總結<br/><br/>建立 Webots 場景需要先建立 Robot 物件，因為它是模擬的核心實體，承載了控制器、感測器、執行器和物理屬性等功能。沒有 Robot，場景就只是一個靜態的環境，無法實現動態的機器人模擬。這是 Webots 設計上的基本要求，也是模擬流程的邏輯起點。</p>
+<p><span>Webots 在建立連桿機構模型時, 是否無法建立 closed chain 機構的 kinematics 模型, 只能建立 dynamic model?</span></p>
+<p>在 Webots 中，建立連桿機構模型時，的確有一些限制。Webots 是一個仿真軟體，主要用於機器人和機械系統的動態仿真，並且使用的模型大多是基於動態模型（dynamic models）來進行運算和仿真。對於一個閉環機構（closed-chain mechanism），Webots 不提供直接建立其運動學（kinematics）模型的工具或算法。</p>
+<p>1. 關於閉環機構的幾點說明：<br/><br/>    運動學（Kinematics）是描述機構運動的幾何學模型，通常關注的是位置、速度和加速度等。<br/>    動力學（Dynamics）則是考慮外力、慣性、摩擦等物理因素，描述機構在運動過程中的力學行為。<br/><br/>2. Webots 中的模型類型：<br/><br/>    Webots 主要依賴動力學模型來處理仿真，這些模型包括力學運算、質量、慣性矩等。在處理一個閉環機構（例如機械手臂中帶有閉環結構的部分）時，Webots 更加強調的是系統的運動學和動力學的結合，並通過數值積分來解決動態方程，而不是像一些其他專門的運動學求解軟體（如 MATLAB、Adams 等）一樣單獨進行運動學建模。<br/><br/>3. 關於閉環機構的仿真：<br/><br/>    當建立閉環機構模型時，Webots 並不直接提供基於閉環運動學的求解器。相反，Webots 會通過動態模型，並將閉環運動的約束作為力學條件來進行處理。因此，它會基於質量、力和慣性等動態特徵來解算運動。<br/>    若需要精確的運動學建模，可以考慮在外部工具中（如 MATLAB、Simulink 或 ROS）進行運動學建模，再將結果導入到 Webots 進行動態仿真。<br/><br/>總結：<br/><br/>Webots 在處理閉環機構時，主要側重於動力學模型的建立，而不是運動學模型。它能夠處理閉環結構的動態行為，但不直接提供基於運動學的閉環求解。對於複雜的運動學分析，可能需要借助其他專業工具來處理，然後將結果匯入 Webots 進行仿真。</p>
+<p data-pm-slice="1 1 []"><span>請就此點與 CoppeliaSim 建模進行比較</span></p>
+<p>在建模閉環機構（closed-chain mechanism）時，<strong>CoppeliaSim</strong>（原名 V-REP）和<span> </span><strong>Webots</strong><span> </span>之間的區別主要體現在它們對運動學（kinematics）和動力學（dynamics）的處理方式上。</p>
+<h4><strong>Webots 的建模特點：</strong></h4>
+<ol>
+<li>
+<p><strong>動力學為主</strong>：</p>
+<ul>
+<li>Webots 強調的是機構的動力學模型，通過質量、慣性矩、力學約束等來描述機構的運動。當處理閉環機構時，Webots 並不直接提供運動學的求解過程，而是依賴動力學來解決運動方程。</li>
+<li>它的仿真是基於數值積分的動態仿真，並且處理的是物理層面上的相互作用，這意味著它更多地側重於如何模擬機構的動力學行為（如速度、加速度、力等）而非僅僅描述機構的幾何運動。</li>
+<li>在設計複雜的閉環機構時，通常需要考慮機構的運動限制，這些限制會作為力學約束條件（例如接觸力、摩擦力、鉸鏈等）納入動力學模型中來進行仿真。</li>
+</ul>
+</li>
+<li>
+<p><strong>閉環機構的動態仿真</strong>：</p>
+<ul>
+<li>Webots 不能直接生成閉環機構的運動學模型（例如雅可比矩陣、運動方程），但它可以處理這些機構的動力學模型並通過數值方法解算運動。閉環機構的運動限制通常會通過編程或物理約束來處理。</li>
+</ul>
+</li>
+</ol>
+<h4><strong>CoppeliaSim 的建模特點：</strong></h4>
+<ol>
+<li>
+<p><strong>強調運動學與動力學結合</strong>：</p>
+<ul>
+<li>CoppeliaSim 在處理閉環機構時，與 Webots 類似，主要處理的是機構的<strong>動力學仿真</strong>，但它同時也具備更強大的<strong>運動學分析功能</strong>。它支持基於機構運動學的建模，並且能夠生成雅可比矩陣、運動學方程等。</li>
+<li>在 CoppeliaSim 中，可以直接利用其內建的運動學求解器來處理複雜的運動學問題（例如多自由度機械手臂、閉環機構等），這使得它能夠提供精確的運動學分析，並且可以基於這些分析結果進行動態仿真。</li>
+</ul>
+</li>
+<li>
+<p><strong>運動學建模和約束處理</strong>：</p>
+<ul>
+<li>CoppeliaSim 允許在機構建模過程中使用<strong>運動學約束</strong>來定義閉環結構。這意味著，使用者可以明確地定義機構的各個部件如何運動、約束其位置、速度等，甚至可以設置關節限制、碰撞檢測等。這些運動學約束和幾何關係被用來確保機構在仿真過程中遵循合理的運動軌跡。</li>
+<li>CoppeliaSim 提供了許多現成的機構建模元件，如彈簧、齒輪、連桿等，並支持用戶自定義機構和關節的運動學約束。</li>
+</ul>
+</li>
+<li>
+<p><strong>更多的控制和交互性</strong>：</p>
+<ul>
+<li>CoppeliaSim 提供了豐富的控制接口，並支持與外部系統進行聯動（如 ROS、Python 等）。這使得用戶可以實現對閉環機構的控制，並將控制策略與運動學和動力學仿真結合起來。</li>
+<li>它也提供了反向運動學（Inverse Kinematics, IK）解算器，對於機械手臂等應用，能夠簡化運動學的建模過程。</li>
+</ul>
+</li>
+</ol>
+<h4><strong>總結比較：</strong></h4>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th><strong>Webots</strong></th>
+<th><strong>CoppeliaSim</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>建模重點</strong></td>
+<td>動力學仿真為主，基於物理規則計算運動</td>
+<td>結合運動學與動力學，提供更高層次的建模功能</td>
+</tr>
+<tr>
+<td><strong>運動學分析</strong></td>
+<td>不直接處理運動學，基於動力學解算運動</td>
+<td>提供運動學求解器，支持雅可比矩陣和運動方程</td>
+</tr>
+<tr>
+<td><strong>閉環機構處理</strong></td>
+<td>需要通過物理約束來實現</td>
+<td>可通過運動學約束和動力學約束建模閉環機構</td>
+</tr>
+<tr>
+<td><strong>運動學求解器</strong></td>
+<td>不提供運動學求解器</td>
+<td>提供運動學求解器，支持反向運動學解算</td>
+</tr>
+<tr>
+<td><strong>開發與控制接口</strong></td>
+<td>支持與外部控制系統連接（如 ROS）</td>
+<td>支持多種控制接口，易於與外部系統集成</td>
+</tr>
+<tr>
+<td><strong>易用性與功能豐富度</strong></td>
+<td>偏向於動力學仿真，適合模擬機器人運動</td>
+<td>提供完整的運動學和動力學建模，適合精細建模</td>
+</tr>
+</tbody>
+</table>
+<h4>結論：</h4>
+<ul>
+<li>如果你專注於<strong>動態仿真</strong>，並且希望更強調機構的物理交互，<strong>Webots</strong><span> </span>是一個很好的選擇。</li>
+<li>如果你需要一個結合<strong>運動學與動力學</strong>的工具，並且希望進行更精細的機構建模，<strong>CoppeliaSim</strong><span> </span>提供了更多的功能來處理閉環機構的運動學約束和動力學行為。它對於處理複雜的運動學問題（例如逆運動學）以及閉環機構的建模可能更加靈活。</li>
+</ul>
+<p>因此，選擇哪個平台取決於你的具體需求，如果你需要較高層次的運動學建模，CoppeliaSim 可能更適合；如果重點在於機構的動態仿真和控制，Webots 可能是更好的選擇。</p>
+<p></p>
+<h4>使用 Onshape 建立平面四連桿系統零組件 (HW2)</h4>
+<p>連桿尺寸依據:<span> </span><a href="https://mdecd2025.github.io/hw-scrum-1/downloads/fourbar_slvs.7z">fourbar_slvs.7z</a></p><h3>w5</h3>
 <h3>w6</h3>
 <h2>Task5</h2>
 <h4>Webots Tutorial 1 ~3 (HW3)</h4>
