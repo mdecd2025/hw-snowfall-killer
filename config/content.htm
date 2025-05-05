@@ -674,15 +674,9 @@ doc["ungroupedmember"].bind('click', add)
 <li>使用 Webots 的 GUI 介面（非程式碼）手動建立</li>
 </ol>
 </ol>
-<p><strong>✅ 建立步驟：</strong></p>
+<p><strong>建立步驟：</strong></p>
 <p><strong>1. 建立新專案</strong></p>
 <ol>
-<ol>
-<ol>
-<ol>
-<ol>
-<ol>
-<ul>
 <ol>
 <li>開啟 Webots。</li>
 <li>選擇「<strong>File &gt; New Project Directory</strong>」。</li>
@@ -694,150 +688,60 @@ doc["ungroupedmember"].bind('click', add)
 </ul>
 </li>
 </ol>
-</ul>
-</ol>
-</ol>
-</ol>
-</ol>
-</ol>
 </ol>
 <p><strong>2. 建立新世界 (World)</strong></p>
 <ol>
-<ol>
-<ol>
-<ol>
-<ol>
-<ol>
-<ul>
 <ol>
 <li>點選「<strong>File &gt; New World</strong>」。</li>
 <li>存檔為 <code>my_world.wbt</code> 到 <code>worlds/</code> 資料夾。</li>
 <li>畫面上會有預設的 <code>RectangleArena</code>，你可以刪掉或保留。</li>
 </ol>
-</ul>
-</ol>
-</ol>
-</ol>
-</ol>
-</ol>
 </ol>
 <p><strong>3. 加入地面 (Floor)</strong></p>
 <ol>
 <ol>
-<ol>
-<ol>
-<ol>
-<ol>
-<ul>
-<ol>
 <li>在左側 <strong>Scene Tree</strong>，右鍵 <code>root</code> → <code>Add &gt; Solid &gt; Floor</code>。</li>
 <li>在右側 <strong>Field Editor</strong> 調整大小與材質。</li>
-</ol>
-</ul>
-</ol>
-</ol>
-</ol>
-</ol>
 </ol>
 </ol>
 <p><strong>4. 加入牆壁 (Wall)</strong></p>
 <p>重複以下步驟四次來建構四面牆：</p>
 <ol>
 <ol>
-<ol>
-<ol>
-<ol>
-<ol>
-<ul>
-<ol>
 <li>右鍵 <code>root</code> → <code>Add &gt; Solid &gt; Box</code>。</li>
 <li>設定 <code>size = [0.1, 2, 1]</code>（厚度 x 長度 x 高度）。</li>
 <li>調整 <code>translation</code> 移到場景邊界，例如：<code>[-1, 0, 0.5]</code>。</li>
-</ol>
-</ul>
-</ol>
-</ol>
-</ol>
-</ol>
 </ol>
 </ol>
 <p><strong>5. 加入輪型機器人 (e-puck)</strong></p>
 <ol>
 <ol>
-<ol>
-<ol>
-<ol>
-<ol>
-<ul>
-<ol>
 <li>右鍵 <code>root</code> → <code>Add &gt; Robot &gt; e-puck</code>。</li>
 <li>設定 <strong>controller</strong> 欄位為 <code>epuck_controller</code>。</li>
-</ol>
-</ul>
-</ol>
-</ol>
-</ol>
-</ol>
 </ol>
 </ol>
 <p><strong>6. 加入距離感測器 (Distance Sensor)</strong></p>
 <ol>
 <ol>
-<ol>
-<ol>
-<ol>
-<ol>
-<ul>
-<ol>
 <li>展開 e-puck 階層。</li>
 <li>右鍵子元件 → <code>Add &gt; Device &gt; DistanceSensor</code>。</li>
 <li>命名為 <code>ds_front</code>，啟用 <code>slot</code> 與 <code>name</code>。</li>
 </ol>
-</ul>
-</ol>
-</ol>
-</ol>
-</ol>
-</ol>
 </ol>
 <p><strong>7. 儲存世界</strong></p>
-<ol>
-<ol>
-<ol>
-<ol>
-<ol>
-<ol>
 <ul>
-<ul>
+<ol>
 <li>選擇「<strong>File &gt; Save World</strong>」，儲存為 <code>.wbt</code> 世界檔。</li>
+</ol>
 </ul>
-</ul>
-</ol>
-</ol>
-</ol>
-</ol>
-</ol>
-</ol>
-<p><strong>🔧 建立控制器程式（Python 範例）</strong></p>
-<ol>
-<ol>
-<ol>
-<ol>
-<ol>
-<ol>
+<p><strong>建立控制器程式（Python 範例）</strong></p>
 <ul>
 <ol>
 <li>在 <code>controllers/</code> 建立 <code>epuck_controller/</code> 資料夾。</li>
 <li>新增 <code>epuck_controller.py</code>，內容如下：</li>
 </ol>
 </ul>
-</ol>
-</ol>
-</ol>
-</ol>
-</ol>
-</ol>
-<pre><code>from controller import Robot
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from controller import Robot
 
 robot = Robot()
 timestep = int(robot.getBasicTimeStep())
@@ -848,43 +752,24 @@ ds.enable(timestep)
 
 while robot.step(timestep) != -1:
     val = ds.getValue()
-    print("Distance:", val)
-</code></pre>
+    print("Distance:", val)</pre>
 <p>回到 Webots，確認 e-puck 的 controller 欄位為 <code>epuck_controller</code>。</p>
-<p><strong>▶️ 開始模擬</strong></p>
+<p><strong>開始模擬</strong></p>
 <ol>
 <ol>
-<ol>
-<ol>
-<ol>
-<ol>
-<ul>
-<ul>
 <li>點選「<strong>Simulation &gt; Run</strong>」或按 Ctrl+R。</li>
 <li>你會在 Console 中看到距離數值不斷被列印出來。</li>
-</ul>
-</ul>
 </ol>
 </ol>
-</ol>
-</ol>
-</ol>
-</ol>
-<p><strong>🧠 延伸建議</strong></p>
+<p><strong>延伸建議</strong></p>
 <ol>
 <ol>
-<ol>
-<ul>
-<ul>
 <li>使用 Supervisor 控制場景動態</li>
 <li>加入攝影機、觸碰感測器等設備</li>
 <li>建立自訂的 <code>.proto</code> 模型</li>
-</ul>
-</ul>
-<li>希望可以手把手一步步說明該如何利用圖形介面 menu 建立這個場景, 過程中有那些要點必須特別注意?</li>
 </ol>
 </ol>
-</ol><h2>Task6</h2>
+<p>希望可以手把手一步步說明該如何利用圖形介面 menu 建立這個場景, 過程中有那些要點必須特別注意?</p><h2>Task6</h2>
 <h4>Webots Tutorial 4 ~6 (HW3)</h4>
 <p>Webots 啟動時，同時啟動串流伺服器指令: webotsw --stream</p>
 <p>內建埠號為 1234，由於採用 WebGL2 進行網頁著色，因此在 Windows 環境中使用 Edge 連線至<span> </span><a href="http://localhost:1234/">http://localhost:1234</a> 或<span> </span><a href="http://stream_server_ip:1234/">http://stream_server_ip:1234</a><span> </span>將會較為順暢.</p>
