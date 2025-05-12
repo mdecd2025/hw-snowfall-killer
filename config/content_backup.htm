@@ -729,18 +729,18 @@ doc["ungroupedmember"].bind('click', add)
 </ol>
 </ol>
 <p><strong>7. 儲存世界</strong></p>
-<ol>
+<ul>
 <ol>
 <li>選擇「<strong>File &gt; Save World</strong>」，儲存為 <code>.wbt</code> 世界檔。</li>
 </ol>
-</ol>
-<p><strong>🔧 建立控制器程式（Python 範例）</strong></p>
-<ol>
+</ul>
+<p><strong>建立控制器程式（Python 範例）</strong></p>
+<ul>
 <ol>
 <li>在 <code>controllers/</code> 建立 <code>epuck_controller/</code> 資料夾。</li>
 <li>新增 <code>epuck_controller.py</code>，內容如下：</li>
 </ol>
-</ol>
+</ul>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from controller import Robot
 
 robot = Robot()
@@ -754,40 +754,22 @@ while robot.step(timestep) != -1:
     val = ds.getValue()
     print("Distance:", val)</pre>
 <p>回到 Webots，確認 e-puck 的 controller 欄位為 <code>epuck_controller</code>。</p>
-<p><strong>▶️ 開始模擬</strong></p>
+<p><strong>開始模擬</strong></p>
 <ol>
 <ol>
-<ol>
-<ol>
-<ol>
-<ol>
-<ul>
-<ul>
 <li>點選「<strong>Simulation &gt; Run</strong>」或按 Ctrl+R。</li>
 <li>你會在 Console 中看到距離數值不斷被列印出來。</li>
-</ul>
-</ul>
 </ol>
 </ol>
-</ol>
-</ol>
-</ol>
-</ol>
-<p><strong>🧠 延伸建議</strong></p>
+<p><strong>延伸建議</strong></p>
 <ol>
 <ol>
-<ol>
-<ul>
-<ul>
 <li>使用 Supervisor 控制場景動態</li>
 <li>加入攝影機、觸碰感測器等設備</li>
 <li>建立自訂的 <code>.proto</code> 模型</li>
-</ul>
-</ul>
-<li>希望可以手把手一步步說明該如何利用圖形介面 menu 建立這個場景, 過程中有那些要點必須特別注意?</li>
 </ol>
 </ol>
-</ol><h2>Task6</h2>
+<p>希望可以手把手一步步說明該如何利用圖形介面 menu 建立這個場景, 過程中有那些要點必須特別注意?</p><h2>Task6</h2>
 <h4>Webots Tutorial 4 ~6 (HW3)</h4>
 <p>Webots 啟動時，同時啟動串流伺服器指令: webotsw --stream</p>
 <p>內建埠號為 1234，由於採用 WebGL2 進行網頁著色，因此在 Windows 環境中使用 Edge 連線至<span> </span><a href="http://localhost:1234/">http://localhost:1234</a> 或<span> </span><a href="http://stream_server_ip:1234/">http://stream_server_ip:1234</a><span> </span>將會較為順暢.</p>
