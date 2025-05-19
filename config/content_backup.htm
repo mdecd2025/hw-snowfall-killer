@@ -161,7 +161,23 @@ doc["cd2025sap"].bind("click", cd2025sap.do)
 ################################## cd2025sap end
 </script>
 </p>
-<p><!-- cd2025students 結束--></p><h3>IPv6</h3>
+<p><!-- cd2025students 結束--></p>
+<p><!-- 用來顯示程式碼的 editor 區域 --></p>
+<div id="kw_editor2" style="width: 600px; height: 300px;"></div>
+<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
+<p><!-- 存擋表單開始 --></p>
+<form><label>Filename: <input id="kw_filename2" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src2', 'kw_filename2');" type="submit" value="Save"/></form>
+<p><!-- 存擋表單結束 --></p>
+<p></p>
+<p><!-- 執行與清除按鈕開始 --></p>
+<p><button id="kw_run2">Run</button> <button id="kw_show_console2">Output</button> <button id="kw_clear_console2">清除輸出區</button><button id="clear_bd2">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
+<p><!-- 執行與清除按鈕結束 --></p>
+<p></p>
+<p><!-- 程式執行 ouput 區 --></p>
+<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console2"></textarea></div>
+<p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
+<div id="brython_div2"></div>
+<!-- editor2 結束 --><hr/><h3>IPv6</h3>
 <p>以系統管理員身分執行<br/>→create_account.bat</p>
 <p>diable_IPv4.ps1需要更改的地方(第十四行)<br/>→$ipv6Address = "2001:288:6004:17:b009"</p>
 <p>以系統管理員身分執行<br/>→ipv6set_up.bat</p>
@@ -721,14 +737,24 @@ while robot.step(timestep) != -1:
 </ol>
 <h2>Exam1</h2>
 <p>Exam1 (10%): 建立 Webots 基本物件模擬場景</p>
-<p>操作影片標題: 國立虎尾科技大學 - 機械設計工程系 - cd2025 Exam1 - 學員學號</p>
-<h2>Exam2</h2>
+<p><img alt="" height="350" src="/images/solvespace機構圖.jpg" width="400"/></p>
+<ol>
+<li>加入robot</li>
+<li></li>
+</ol>
+<p>操作影片標題: 國立虎尾科技大學 - 機械設計工程系 - cd2025 Exam1 - 41023218</p><h2>Exam2</h2>
 <p>Exam2 (10%): 利用 CAD 零組件建立模擬場景</p>
 <p>操作影片標題: 國立虎尾科技大學 - 機械設計工程系 - cd2025 Exam2 - 學員學號</p>
 <h2>Exam3</h2>
 <p>Exam3 (20%): Webots 機電模擬場景的協同設計</p>
-<p>操作影片標題: 國立虎尾科技大學 - 機械設計工程系 - cd2025 Exam3 - 學員學號</p>
-<h1>Final</h1>
+<ol>
+<li>
+<p>操作影片標題: 國立虎尾科技大學 - 機械設計工程系 - cd2025 Exam3-1 - 學員學號</p>
+<p>以 <span style="color: #0000ff;">webotsw --stream</span> 啟動。<br/> 可以從<span style="background-color: #cceeff;">Console - all控制台</span>看到連接埠號：1235。<br/> 更改個人 IPv6 網址：<span style="color: #0000ff;">2001:288:6004:17:fff1:cd25:0000:b009</span>，並關閉 IPv4。<br/> Webots Streaming Viewer網址：<span style="color: #0000ff;">http://[2001:288:6004:17:fff1:cd25:0000:b009]:1235/index.html</span><br/> Connect to：<span style="color: #0000ff;">ws://[2001:288:6004:17:fff1:cd25:0000:b009]:1235</span><br/> 即可完成連線。</p>
+<p></p>
+<p style="padding-left: 30px;"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/36GzrWxhasE?si=Mu3gYiVkD7YV6hdE" title="YouTube video player" width="560"></iframe></p>
+</li>
+</ol><h1>Final</h1>
 <p><span>期末協同專案執行過程影片、簡報與 PDf 報告檔案 (六人一組) (30%)</span></p>
 <p><span>題目: <span style="background-color: #ccffcc;">Webots 動態投籃模擬系統的協同設計</span></span></p>
 <p><span>說明: </span></p>
