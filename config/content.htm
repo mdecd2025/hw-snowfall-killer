@@ -181,7 +181,7 @@ doc["cd2025sap"].bind("click", cd2025sap.do)
 <p>以系統管理員身分執行<br/>→create_account.bat</p>
 <p>diable_IPv4.ps1需要更改的地方(第十四行)<br/>→$ipv6Address = "2001:288:6004:17:b009"</p>
 <p>以系統管理員身分執行<br/>→ipv6set_up.bat</p>
-<h2>Task2</h2>
+<p>IPv6 位址：2001:288:6004:17:fff1:cd25:0000:b009<br/>預設閘道： 2001:288:6004:17::254<br/>DNS 伺服器位址<br/>慣用 DNS 伺服器：2001:288:6004:17::3<br/>其他 DNS 伺服器：2001:b000:168::1</p><h2>Task2</h2>
 <h4>使用 SSH 協定執行作業倉儲的推送</h4>
 <p><a href="https://zh.wikipedia.org/zh-tw/Secure_Shell">SSH</a><span> </span>是一種加密的網路傳輸協定, PuTTY 則是可用於 Windows 環境的 SSH 協定工具, 其中支援遠端登入 (putty.exe) 與檔案傳輸工具 (psftp.exe).</p>
 <p>使用 PuTTY 所建立的公私鑰進行 Github push 認證的步驟:</p>
@@ -751,13 +751,17 @@ while robot.step(timestep) != -1:
 <ol>
 <li>
 <p><span>操作影片標題：<span style="background-color: #ffff00;">國立虎尾科技大學 - 機械設計工程系 - cd2025 Exam3-1 - 41023218</span></span></p>
-<p>以 <span style="color: #0000ff;">webotsw --stream</span> 啟動。可以從<span style="background-color: #cceeff;">Console - all控制台</span>看到連接埠號：1235。<br/> 更改個人 IPv6 網址：<span style="color: #0000ff;">2001:288:6004:17:fff1:cd25:0000:b009</span>，並關閉 IPv4。<br/> Webots Streaming Viewer網址：<span style="color: #0000ff;">http://[2001:288:6004:17:fff1:cd25:0000:b009]:1235/index.html</span><br/> Connect to：<span style="color: #0000ff;">ws://[2001:288:6004:17:fff1:cd25:0000:b009]:1235</span><br/> 即可完成連線。<br/>若要連線到其他組員，修改Connect to到對方網址即可<br/>Connect to：<span style="color: #0000ff;">ws://[2001:288:6004:17:fff1:cd25:0000:b010]:1234</span></p>
+<p>1.以 <span style="color: #0000ff;">webotsw --stream</span> 啟動。可以從<span style="background-color: #cceeff;">Console - all控制台</span>看到連接埠號：1235。<br/>2. 更改個人 IPv6 網址：<span style="color: #0000ff;">2001:288:6004:17:fff1:cd25:0000:b009</span>，並關閉 IPv4。<br/>3.Webots Streaming Viewer網址：<span style="color: #0000ff;">http://[2001:288:6004:17:fff1:cd25:0000:b009]:1235/index.html</span><br/> Connect to：<span style="color: #0000ff;">ws://[2001:288:6004:17:fff1:cd25:0000:b009]:1235</span><br/> 即可完成連線。<br/>4.若要連線到其他組員，修改Connect to到對方網址即可<br/>Connect to：<span style="color: #0000ff;">ws://[2001:288:6004:17:fff1:cd25:0000:b010]:1234</span></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/36GzrWxhasE?si=Mu3gYiVkD7YV6hdE" title="YouTube video player" width="560"></iframe></p>
 </li>
 <li>
 <p>操作影片標題：<span style="background-color: #ffff00;">國立虎尾科技大學 - 機械設計工程系 - cd2025 Exam3-2 - 41023218</span></p>
-<p>以 <span style="color: #0000ff;">webotsw --stream</span> 啟動。<br/>開啟seven_segment.py。<br/>修改第85行顯示數字 number = 123 改成 number = 218。<br/>修改後存檔，並模擬結果。<br/>可以從<span style="background-color: #cceeff;">Console - all控制台</span>看到連接埠號：1235。<br/> 更改個人 IPv6 網址：<span style="color: #0000ff;">2001:288:6004:17:fff1:cd25:0000:b009</span>，並關閉 IPv4。<br/> Webots Streaming Viewer網址：<span style="color: #0000ff;">http://[2001:288:6004:17:fff1:cd25:0000:b009]:1235/index.html</span><br/> Connect to：<span style="color: #0000ff;">ws://[2001:288:6004:17:fff1:cd25:0000:b009]:1235</span><br/> 即可完成連線。<br/>若要連線到其他組員，修改Connect to到對方網址即可<br/>Connect to：<span style="color: #0000ff;">ws://[2001:288:6004:17:fff1:cd25:0000:b010]:1234</span></p>
+<p>1.以 <span style="color: #0000ff;">webotsw --stream</span> 啟動。<br/>2.開啟seven_segment.py。<br/>3.修改第85行顯示數字 number = 123 改成 number = 218。<br/>4.修改後存檔，並模擬結果。<br/>5.可以從<span style="background-color: #cceeff;">Console - all控制台</span>看到連接埠號：1235。<br/>6.更改個人 IPv6 網址：<span style="color: #0000ff;">2001:288:6004:17:fff1:cd25:0000:b009</span>，並關閉 IPv4。<br/>7.Webots Streaming Viewer網址：<span style="color: #0000ff;">http://[2001:288:6004:17:fff1:cd25:0000:b009]:1235/index.html</span><br/> Connect to：<span style="color: #0000ff;">ws://[2001:288:6004:17:fff1:cd25:0000:b009]:1235</span><br/> 即可完成連線。<br/>8.若要連線到其他組員，修改Connect to到對方網址即可<br/>Connect to：<span style="color: #0000ff;">ws://[2001:288:6004:17:fff1:cd25:0000:b010]:1234</span></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/WCVBxRNdd1o?si=cRkrqZN6H3JDN25e" title="YouTube video player" width="560"></iframe></p>
+</li>
+<li>
+<p>操作影片標題：<span style="background-color: #ffff00;">國立虎尾科技大學 - 機械設計工程系 - cd2025 Exam3-3 - 41023218</span></p>
+<p>pip install websocket-client websocket-server keyboard</p>
 </li>
 </ol><h1>Final</h1>
 <p><span>期末協同專案執行過程影片、簡報與 PDf 報告檔案 (六人一組) (30%)</span></p>
