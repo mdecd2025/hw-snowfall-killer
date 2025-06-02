@@ -144,8 +144,38 @@ img.add_border {
         </header>
     <div id="tipue_search_content">Exam1 << <a href='Exam1.html'>Previous</a> <a href='Exam3.html'>Next</a> >> Exam3<br /><h1>Exam2</h1>
 <p>Exam2 (10%)：利用 CAD 零組件建立模擬場景</p>
+<p>link1連桿為主動旋轉，其旋轉速度設為1.0 rad/s，長度為1.18m。</p>
+<p><span style="background-color: #00ff00;">起始角度18°</span></p>
+<p>link2基座長端為1.8m，短端長度為0.9m，基座短端位於長桿中央且與基座長桿重疊。</p>
+<p>link3連桿長度為2.7m，link1與link3距離則為3.0m。</p>
+<p>link1、link2、link3桿件厚度均為0.1m。</p>
+<ol>
+<li>使用SciTE打開python執行檔"split_stl_to_obj_scale2.py"，在4link.stl這個地方做更改，改為exam2組合.stl，按下F5執行即可將<span>exam2組合</span>.stl分割為blender可視化的.obj。</li>
+<li>新建檔案，加入Robot。</li>
+<li>在Robot下加入2個Solid命名為base1、base2。</li>
+<li><span>base1→children→CadShape下的url加入base1連結。<br/>base2→children→CadShape下的url加入base2連結。</span></li>
+<li>在Robot<span>→</span>chrildren下加入第一個HingeJoint節點，命名為joint1。</li>
+<li>joint1→endpoint選擇新增Solid節點，命名為link1。</li>
+<li><span>joint1→endpoint</span><span>→children</span>新增第二個Hingepoint命名為joint2和新增第一個CadShape。</li>
+<li><span>joint1→endpoint</span><span>→children→</span>CadShape下的url加入link1連結。</li>
+<li>joint2<span>→endpoint選擇新增Solid節點，命名為link2。</span></li>
+<li><span>joint2→endpoint</span><span>→children</span>新增第三個Hingepoint命名為joint3和新增第二個CadShape。</li>
+<li><span>joint2→endpoint</span><span>→children→</span>CadShape下的url加入link2連結。<span></span></li>
+<li><span>joint3→endpoint</span><span>→children→新增第三個CadShape。</span></li>
+<li><span>joint3→endpoint</span><span>→children→</span>CadShape下的url加入link3連結。<span></span><span></span></li>
+<li><span>joint1→endpoint</span><span>→children新增</span>第四個Hingejoint命名為joint4</li>
+<li><span>joint4→endpoint新增SolidReference，solidName選擇link3。</span></li>
+<li><span>補上在endpoint下所有的boundingObject，設為Mesh，並在下方的url加入個零件檔連結。</span></li>
+<li><span>每一階的HingeJoint下的jointparameters，每一階的axis旋轉方向都是z軸，因此設為(0,0,1)，並更改每一階的anchor：<br/>joint1的為(0,0,0)<br/>joint2的為(1.12,0.36,0)<br/>joint3的為(1.36,2.15,0)<br/>joint4的為(3,0,0)。</span></li>
+<li><span>link1、link2、link3要加入物理碰撞physics使用預設值，由Webots自行運算即可。</span></li>
+<li><span>加入controller選擇檔案。</span></li>
+<li><span>存檔後時間歸零確認無誤，即可模擬。</span></li>
+</ol>
+<p><span><img alt="" height="525" src="./../images/Exam2機構圖.png" width="600"/></span></p>
 <p>操作影片標題：<span style="background-color: #ffff00;">國立虎尾科技大學 - 機械設計工程系 - cd2025 Exam1 - 41023218</span></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/7jRTlb_-sUI?si=QCNSXQ1OVfLsO1DL" title="YouTube video player" width="560"></iframe></p><br />Exam1 << <a href='Exam1.html'>Previous</a> <a href='Exam3.html'>Next</a> >> Exam3</div>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/7jRTlb_-sUI?si=QCNSXQ1OVfLsO1DL" title="YouTube video player" width="560"></iframe></p>
+<p>心得：機構尺寸設計上，有一個疑點，我如果把桿件寬度調寬，便無法進行模擬，如果把尺寸調細，動力學模擬是OK的，但是沒有Exam1的box桿件模擬來的順暢，不知道較粗大的尺寸問題點在哪？</p>
+<p>檔案：<a href="./../downloads/Exam2(practice).7z">Exam2.7z</a></p><br />Exam1 << <a href='Exam1.html'>Previous</a> <a href='Exam3.html'>Next</a> >> Exam3</div>
         
     <!-- footer -->
       <div class="container">
