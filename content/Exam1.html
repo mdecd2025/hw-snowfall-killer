@@ -143,12 +143,42 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">Exam << <a href='Exam.html'>Previous</a> <a href='Exam2.html'>Next</a> >> Exam2<br /><h1>Exam1</h1>
-<p>Exam1 (10%): 建立 Webots 基本物件模擬場景</p>
+<p>Exam1 (10%)：建立 Webots 基本物件模擬場景</p>
 <p>紅色連桿為主動旋轉，其旋轉速度設為1.0 rad/s，長度為0.4m。</p>
 <p><span style="background-color: #00ff00;">起始角度18°</span></p>
 <p>綠色基座長端為0.6m，短端長度為0.3m，基座短端位於長桿中央且與基座長桿重疊。</p>
-<p><span>藍色連桿長度為0.9m，紅色連桿與藍色連桿距離則為1m。</span></p>
-<p><img alt="" height="700" src="./../images/solvespace機構圖.jpg" width="800"/></p>
+<p>藍色連桿長度為0.9m，紅色連桿與藍色連桿距離則為1m。</p>
+<ol>
+<li>加入Robot</li>
+<li>在Robot下加入Solid命名為base。</li>
+<li>在Solid下加入第一個HingeJoint節點，命名為joint1。</li>
+<li>joint1→endpoint選擇新增Solid節點，命名為link1。</li>
+<li>joint1→endpoint→translation(x,y,z)設定(-0.5,0,0.1)，此為轉軸的座標。</li>
+<li>joint1→endpoint→rotation(x,y,z,angle)設為(0,0,1,0.314)。<br/>角度為學號後兩碼18°轉θ = 0.314 rad。</li>
+<li><span>joint1→endpoint</span><span>→children</span>新增第一個Pose命名為link1和新增第二個HingeJoint命名為joint2。</li>
+<li><span>joint1→endpoint</span><span>→children→</span>第一個Pose<span>→</span>children加入Shape作為link1。</li>
+<li>Shape下的geometry加入box作為link1，size為(0.4,0.1,0.1)。</li>
+<li><span>joint1→endpoint</span><span>→children→</span>第一個Pose<span>→</span>translation設為link1長度的一半(0.2,0,0)。</li>
+<li><span>joint1→endpoint</span><span>→children新增</span>第二個Hingejoint命名為joint2，endpoint新增Solid命名為link2。</li>
+<li>joint2→endpoint→translation設(0.4,0,0.1)，此為轉軸2的座標，z軸提高0.1m以防止模型穿模。</li>
+<li><span>joint2→endpoint→rotation設為(0,0,1,1.12)，</span><span>64.56°轉θ = 1.12 rad。</span></li>
+<li><span>joint2→endpoint→</span>children<br/>新增<span>第三個Hingejoint命名為</span>joint3，<br/>新增第二個Pose命名為link2-1，<br/>新增第三個Pose命名為link2-2。</li>
+<li><span>第二個Pose(link2-1)→children→Shape→geometry加入box作為link2-1，size為(0.6,0.1,0.1)。</span></li>
+<li><span>第二個Pose(link2-1)→translation設為link2-1長度的一半(0.3,0,0)。</span></li>
+<li><span>第三個Pose(link2-2)→children→Shape→geometry加入box作為link2-2，size為(0.1,0.3,0.1)。</span></li>
+<li><span>第三個Pose(link2-2)→translation設為link2-2長度的一半(0.3,0.15,0)。</span><span></span></li>
+<li><span>joint1</span><span>→endpoint</span><span>→children→</span><span>joint2→endpoint→</span><span>children→</span>joint3<span>新增Solid命名為link3。</span></li>
+<li>joint3→endpoint→translation設(0.6,0,-0.1)，此為轉軸3的座標，z軸降低0.1m與base相接。</li>
+<li><span>rotation設為(0,0,-1,2.37)。z軸為負且135.54°轉θ = 2.37 rad。</span></li>
+<li>joint3<span>→endpoint→children<br/>新增第四個Hingejoint命名為joint4，</span><span><br/>新增第四個Pose命名為link3</span><span>。</span></li>
+<li><span>joint4→endpoint新增SolidReference，solidName選擇預設值&lt;static environment&gt;。</span></li>
+<li><span>補上在endpoint下所有的boundingObject，設為Pose，並在下方的children加上box，Pose座標為以上所有方塊所屬的Pose的座標。</span></li>
+<li><span>每一階的HingeJoint下的jointparameters，每一階的axis旋轉方向都是z軸，因此設為(0,0,1)，並更改每一階的anchor：<br/>joint1的為(-0.5,0,0)<br/>joint2的為(0.4,0,0)<br/>joint3的為(0.6,0,0)<br/>joint4的為(0.9,0,0)。</span></li>
+<li><span>link1、link2-1、link2-2、link3要加入物理碰撞physics使用預設值，由Webots自行運算即可。</span></li>
+<li><span>加入controller選擇檔案。</span></li>
+<li><span>存檔後時間歸零確認無誤，即可模擬。</span></li>
+</ol>
+<p><img alt="" height="525" src="./../images/solvespace機構圖.jpg" width="600"/></p>
 <p>操作影片標題：<span style="background-color: #ffff00;">國立虎尾科技大學 - 機械設計工程系 - cd2025 Exam1 - 41023218</span></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/9sOgTnlI28I?si=hOr4qzvcdrBVmqWz" title="YouTube video player" width="560"></iframe></p><br />Exam << <a href='Exam.html'>Previous</a> <a href='Exam2.html'>Next</a> >> Exam2</div>
         
