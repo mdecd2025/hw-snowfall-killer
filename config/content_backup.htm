@@ -697,6 +697,8 @@ while robot.step(timestep) != -1:
 <p style="padding-left: 30px;"><img alt="" height="264" src="/images/fourbar_ball_throwing_linkage.gif" width="400"/></p>
 <h2>HW1</h2>
 <p>HW1 (5%): <span style="background-color: #ffff00;">建立由 Box 組成的平面四連桿機構 Webots 模擬場景</span></p>
+<p>Q：link1是否要使用pose？</p>
+<p>A：</p>
 <p>操作影片標題: 國立虎尾科技大學 - 機械設計工程系 - cd2025 HW1 - 41023218</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/CqOngn4yLbw?si=hPUPc34hCKPBeFnh" title="YouTube video player" width="560"></iframe></p><h2>HW2</h2>
 <p>HW2 (5%): <span style="background-color: #ffff00;">建立由 CAD 繪製零件組成的平面四連桿機構 Webots 模擬場景</span></p>
@@ -785,7 +787,7 @@ while robot.step(timestep) != -1:
 <p>心得：</p>
 <p>做到link2的時候，一開始腦袋轉不過來，抱著嘗試2個Pose的態度，嘗試過後成功了。</p>
 <p>檔案：<a href="/downloads/Exam1(practice).7z">Exam1.7z</a></p><h2>Exam2</h2>
-<p>Exam2 (10%)：<span style="background-color: #ffff00;">利用 CAD 零組件建立模擬場景</span></p>
+<p>Exam2 (10%)：利用 CAD 零組件建立模擬場景</p>
 <p>link1連桿為主動旋轉，其旋轉速度設為1.0 rad/s，長度為1.18m。</p>
 <p><span style="background-color: #00ff00;">起始角度18°</span></p>
 <p>link2基座長端為1.8m，短端長度為0.9m，基座短端位於長桿中央且與基座長桿重疊。</p>
@@ -842,7 +844,109 @@ while robot.step(timestep) != -1:
 <p style="padding-left: 30px;"><span>操作者可利用鍵盤特定按鍵控制投籃輪車的移動並發射投籃, 每投出一球後系統透過記分板進行計分, 並由送球機構進行補球或移動輪車取球, 遊戲可進行至全部數量籃球投完為止.</span></p>
 <p>請將期末協同專案執行過程、內容與心得, 製作成影片，配合字幕上傳至 Youtube 後嵌入各階段的期末報告頁面中.</p>
 <p>影片標題: <span style="background-color: #ffff00;">國立虎尾科技大學 - 機械設計工程系 - cd2025 期末報告 - 學員學號 - 各階段影片主題<br/></span></p>
-<h1>Brython</h1>
+<h2>Final process</h2>
+<p>06/13：</p>
+<p>修改feed_ball_loop.py參數餵球上限：</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from controller 
+# ----------------- 參數區 -----------------
+HOOP_CENTER = [0.622, -0.103, 0.742838]
+BALL_DEF_PATTERN = re.compile(r"Sphere_\d+")
+supervisor = Supervisor()
+timestep = int(supervisor.getBasicTimeStep())
+keyboard = Keyboard()
+keyboard.enable(timestep)
+MAX_BALLS_ALLOWED = 3
+ball_count = 0
+warning_shown = False
+landed_balls = []  # [(def_name, landed_time)]
+DELETE_DELAY = 2.0  # 秒
+# ----------------- 建立靜態球體 -----------------
+def create_static_sphere(supervisor, x, y, z):
+    global waiting_ball_def, waiting_ball_info, ball_count, warning_shown
+    if ball_count &gt;= MAX_BALLS_ALLOWED:
+        if not warning_shown:
+            print(f"球數已達上限 ({MAX_BALLS_ALLOWED})，請謹慎地擊出最後一球。")
+            warning_shown = True
+        return
+
+    warning_shown = False  # 可以新增球，代表之前的提示已失效
+    def_name = generate_valid_def_name()
+    waiting_ball_def = def_name
+    r, g, b = generate_random_color()
+    world_pos = youbot_local_to_world((x, y, z))
+    waiting_ball_info = (world_pos, r, g, b)
+    create_static_ball(def_name, world_pos, r, g, b)
+    ball_count += 1
+# ----------------- 定義球落地 -----------------
+def is_ball_landed(pos, threshold_z=0.13):
+    return pos[2] &lt; threshold_z
+
+print("按 A 產生一顆靜止球，按 M 讓球變 dynamic 可擊出（自動與手動均可，多5個軌跡點，球落地後軌跡自動消失）")
+
+while supervisor.step(timestep) != -1:
+    # 1. 處理 auto_loop.py 傳來的自動訊息
+    while receiver.getQueueLength() &gt; 0:
+        msg = receiver.getString()
+        if msg == "a":
+            if waiting_ball_def is None:
+                create_static_sphere(supervisor, *default_feed_pos)
+                current_tracked_def = waiting_ball_def
+                delete_trajectory_points()
+        elif msg == "m":
+            activate_dynamic_ball()
+        # "k" 可選，通常給擊球機構用，這邊可忽略或加狀態清理
+        receiver.nextPacket()
+
+    # 2. 處理手動鍵盤控制
+    key = keyboard.getKey()
+    current_time = time.time()
+    if key == ord('A') and (current_time - last_key_time &gt;= debounce_time):
+        if waiting_ball_def is None:
+            create_static_sphere(supervisor, *default_feed_pos)
+            current_tracked_def = waiting_ball_def
+            delete_trajectory_points()
+        else:
+            print("還有一顆球等待擊出，請先擊出再產生新球。")
+        last_key_time = current_time
+    if key == ord('M') and (current_time - last_key_time &gt;= debounce_time):
+        activate_dynamic_ball()
+        last_key_time = current_time
+
+    # 3. 拋物線軌跡追蹤
+    if current_tracked_def is not None:
+        ball_node = supervisor.getFromDef(current_tracked_def)
+        if ball_node is not None:
+            pos = ball_node.getPosition()
+            if current_time - last_print_time &gt;= PRINT_INTERVAL:
+                last_print_time = current_time
+            if (not trajectory_points) or np.linalg.norm(np.array(pos) - np.array(trajectory_points[-1][0])) &gt; TRAJECTORY_POINT_STEP:
+                def_name = create_trajectory_point(pos)
+                trajectory_points.append((pos, def_name))
+                if len(trajectory_points) &gt; TRAJECTORY_MAX_POINTS:
+                    _, old_def = trajectory_points.pop(0)
+                    node = supervisor.getFromDef(old_def)
+                    if node:
+                        node.remove()
+            if is_ball_landed(pos):
+                delete_trajectory_points()
+                landed_balls.append((current_tracked_def, time.time()))
+                current_tracked_def = None
+                ball_count = max(0, ball_count - 1)
+
+
+
+        else:
+            delete_trajectory_points()
+            current_tracked_def = None
+# ----------------- 處理落地球延遲刪除 -----------------            
+    now = time.time()
+    for def_name, landed_time in landed_balls[:]:
+        if now - landed_time &gt;= DELETE_DELAY:
+            node = supervisor.getFromDef(def_name)
+            if node:
+                node.remove()
+            landed_balls.remove((def_name, landed_time))</pre>
+<p>Q：目前模擬結果無法刪除球sphere實體。</p><h1>Brython</h1>
 <p><button id="add1to100">1 add to 100</button></p>
 <!-- 導入 brython 程式庫 -->
 <p>

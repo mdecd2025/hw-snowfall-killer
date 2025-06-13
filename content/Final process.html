@@ -2,7 +2,7 @@
         <head>
         <title>cd_hw</title>
         <meta charset="utf-8">
-<meta property="head" content="H1">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -142,23 +142,109 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content"> <a href='Task.html'>Next</a> >> Task<br /><h1>About</h1>
-<p>41023218</p>
-<p>課程名稱: 協同產品設計實習 - Collaborative Product Design Practice</p>
-<p>學員作業網站：<a href="https://mdecd2025.github.io/hw-snowfall-killer/content/index.html" target="_blank">https://mdecd2025.github.io/hw-snowfall-killer/content/index.html</a></p>
-<p>學員作業倉儲：<a href="https://github.com/mdecd2025/hw-snowfall-killer" target="_blank">https://github.com/mdecd2025/hw-snowfall-killer</a></p>
-<hr/>
-<p>課程代號: cd2025</p>
-<p>Teams 線上教學:</p>
-<p style="padding-left: 30px;">以 "學號@nfu.edu.tw" 登入<span> </span><a href="https://login.microsoftonline.com/">https://login.microsoftonline.com/</a><span> </span>Office 365</p>
-<p style="padding-left: 30px;">Teams 團隊代碼: <span>p5z4eku</span></p>
-<hr/>
-<p>課程評分:</p>
-<p style="padding-left: 30px;">Homework (30%) - 每週至少提交兩次與課程進度有關的內容, 完成後填回自評表單</p>
-<p style="padding-left: 30px;">Exam (40%) - 建立包含操作流程影片、心得以及提供檔案下載的網頁後填回自評表單</p>
-<p style="padding-left: 30px;">Final Report (30%) - 利用網頁內容進行簡報並提交 pdf 格式書面報告, 完成後填回自評表單</p>
-<p></p>
-<br /> <a href='Task.html'>Next</a> >> Task</div>
+    <div id="tipue_search_content">Final << <a href='Final.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython<br /><h1>Final process</h1>
+<p>06/13：</p>
+<p>修改feed_ball_loop.py參數餵球上限：</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from controller 
+# ----------------- 參數區 -----------------
+HOOP_CENTER = [0.622, -0.103, 0.742838]
+BALL_DEF_PATTERN = re.compile(r"Sphere_\d+")
+supervisor = Supervisor()
+timestep = int(supervisor.getBasicTimeStep())
+keyboard = Keyboard()
+keyboard.enable(timestep)
+MAX_BALLS_ALLOWED = 3
+ball_count = 0
+warning_shown = False
+landed_balls = []  # [(def_name, landed_time)]
+DELETE_DELAY = 2.0  # 秒
+# ----------------- 建立靜態球體 -----------------
+def create_static_sphere(supervisor, x, y, z):
+    global waiting_ball_def, waiting_ball_info, ball_count, warning_shown
+    if ball_count &gt;= MAX_BALLS_ALLOWED:
+        if not warning_shown:
+            print(f"球數已達上限 ({MAX_BALLS_ALLOWED})，請謹慎地擊出最後一球。")
+            warning_shown = True
+        return
+
+    warning_shown = False  # 可以新增球，代表之前的提示已失效
+    def_name = generate_valid_def_name()
+    waiting_ball_def = def_name
+    r, g, b = generate_random_color()
+    world_pos = youbot_local_to_world((x, y, z))
+    waiting_ball_info = (world_pos, r, g, b)
+    create_static_ball(def_name, world_pos, r, g, b)
+    ball_count += 1
+# ----------------- 定義球落地 -----------------
+def is_ball_landed(pos, threshold_z=0.13):
+    return pos[2] &lt; threshold_z
+
+print("按 A 產生一顆靜止球，按 M 讓球變 dynamic 可擊出（自動與手動均可，多5個軌跡點，球落地後軌跡自動消失）")
+
+while supervisor.step(timestep) != -1:
+    # 1. 處理 auto_loop.py 傳來的自動訊息
+    while receiver.getQueueLength() &gt; 0:
+        msg = receiver.getString()
+        if msg == "a":
+            if waiting_ball_def is None:
+                create_static_sphere(supervisor, *default_feed_pos)
+                current_tracked_def = waiting_ball_def
+                delete_trajectory_points()
+        elif msg == "m":
+            activate_dynamic_ball()
+        # "k" 可選，通常給擊球機構用，這邊可忽略或加狀態清理
+        receiver.nextPacket()
+
+    # 2. 處理手動鍵盤控制
+    key = keyboard.getKey()
+    current_time = time.time()
+    if key == ord('A') and (current_time - last_key_time &gt;= debounce_time):
+        if waiting_ball_def is None:
+            create_static_sphere(supervisor, *default_feed_pos)
+            current_tracked_def = waiting_ball_def
+            delete_trajectory_points()
+        else:
+            print("還有一顆球等待擊出，請先擊出再產生新球。")
+        last_key_time = current_time
+    if key == ord('M') and (current_time - last_key_time &gt;= debounce_time):
+        activate_dynamic_ball()
+        last_key_time = current_time
+
+    # 3. 拋物線軌跡追蹤
+    if current_tracked_def is not None:
+        ball_node = supervisor.getFromDef(current_tracked_def)
+        if ball_node is not None:
+            pos = ball_node.getPosition()
+            if current_time - last_print_time &gt;= PRINT_INTERVAL:
+                last_print_time = current_time
+            if (not trajectory_points) or np.linalg.norm(np.array(pos) - np.array(trajectory_points[-1][0])) &gt; TRAJECTORY_POINT_STEP:
+                def_name = create_trajectory_point(pos)
+                trajectory_points.append((pos, def_name))
+                if len(trajectory_points) &gt; TRAJECTORY_MAX_POINTS:
+                    _, old_def = trajectory_points.pop(0)
+                    node = supervisor.getFromDef(old_def)
+                    if node:
+                        node.remove()
+            if is_ball_landed(pos):
+                delete_trajectory_points()
+                landed_balls.append((current_tracked_def, time.time()))
+                current_tracked_def = None
+                ball_count = max(0, ball_count - 1)
+
+
+
+        else:
+            delete_trajectory_points()
+            current_tracked_def = None
+# ----------------- 處理落地球延遲刪除 -----------------            
+    now = time.time()
+    for def_name, landed_time in landed_balls[:]:
+        if now - landed_time &gt;= DELETE_DELAY:
+            node = supervisor.getFromDef(def_name)
+            if node:
+                node.remove()
+            landed_balls.remove((def_name, landed_time))</pre>
+<p>Q：目前模擬結果無法刪除球sphere實體。</p><br />Final << <a href='Final.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
         
     <!-- footer -->
       <div class="container">
