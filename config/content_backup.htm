@@ -38,154 +38,22 @@
 </ol>
 <p>以下為操作影片:</p>
 <h3>list</h3>
-<p><button id="cd2025students">cd2025students</button><button id="cd2025sap">cd2025sap</button></p>
-<!-- 導入 brython 程式庫 -->
-<p>
-<script src="/static/brython.js"></script>
-<script src="/static/brython_stdlib.js"></script>
-</p>
-<!-- 啟動 Brython -->
-<p>
-<script>
-window.onload=function(){
-brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
-}
-</script>
-</p>
-<p><!-- 導入 FileSaver 與 filereader --></p>
-<p>
-<script src="/static/ace/FileSaver.min.js" type="text/javascript"></script>
-<script src="/static/ace/filereader.js" type="text/javascript"></script>
-</p>
-<p><!-- 導入 ace --></p>
-<p>
-<script src="/static/ace/ace.js" type="text/javascript"></script>
-<script src="/static/ace/ext-language_tools.js" type="text/javascript"></script>
-<script src="/static/ace/mode-python3.js" type="text/javascript"></script>
-<script src="/static/ace/snippets/python.js" type="text/javascript"></script>
-</p>
-<p><!-- 導入 gearUtils-0.9.js Cango 齒輪繪圖程式庫 -->
-<script src="/static/Cango-24v03-min.js"></script>
-<script src="/static/gearUtils-09.js"></script>
-<script src="/static/SVGpathUtils-6v03-min.js"></script>
-<script src="/static/sylvester.js"></script>
-<script src="/static/PrairieDraw.js"></script>
-</p>
-<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src1"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
-<p>
-<script type="text/javascript">
-function doSave(storage_id, filename){
-    var blob = new Blob([localStorage[storage_id]], {type: "text/plain;charset=utf-8"});
-    filename = document.getElementById(filename).value
-    saveAs(blob, filename+".py");
-}
-</script>
-</p>
-<p>
-<script type="text/python3">
-from browser import document as doc
-import ace
-# 清除畫布
-def clear_bd1(ev):
-    bd = doc["brython_div1"]
-    bd.clear()
-Ace1 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
-# 從 gist 取出程式碼後, 放入 editor 作為 default 程式
-def run1():
-    # 利用 get 取下 src 變數值
-    try:
-        url = doc.query["src"]
-    except:
-        url = "https://gist.githubusercontent.com/snowfall-killer/61fa9780a59be3e44f8653f0a66e49dc/raw/1b1c9b3407a46b492ecc1986905cc43562c0ad66/cd2025_student.py"
-    prog = open(url).read()
-
-    # 將程式載入編輯區
-    Ace1.editor.setValue(prog)
-    Ace1.editor.scrollToRow(0)
-    Ace1.editor.gotoLine(0)
-    # 直接執行程式
-    #ns = {'__name__':'__main__'}
-    #exec(prog, ns)
-    # 按下 run 按鈕
-    Ace1.run()
-
-# 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定
-doc['kw_run1'].bind('click', Ace1.run)
-doc['kw_show_console1'].bind('click', Ace1.show_console)
-doc['kw_clear_console1'].bind('click', Ace1.clear_console)
-doc['clear_bd1'].bind('click', clear_bd1)
-# 呼叫函式執行
-run1()
-</script>
-</p>
-<p><!-- cd2025students 開始 -->
-<script type="text/python3">
-from browser import document as doc
-import ace
-
-# 清除畫布
-def clear_bd1(ev):
-    bd = doc["brython_div1"]
-    bd.clear()
-
-# 利用 ace 中的 Editor 建立 Ace2 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
-Ace2 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
-
-# 透過 Ace2 以類別建立一個通用的 button2, 可以在多個案例中將 gist 程導入編輯區
-
-class button2:
-    def __init__(self, url):
-        self.url = url
-
-    # 記得加入 event 輸入變數
-    def do(self,ev):
-        Ace2.editor.setValue(open(self.url).read())
-        Ace2.editor.scrollToRow(0)
-        Ace2.editor.gotoLine(0)
-        Ace2.run()
-
-cd2025students_url = "https://gist.githubusercontent.com/snowfall-killer/61fa9780a59be3e44f8653f0a66e49dc/raw/1b1c9b3407a46b492ecc1986905cc43562c0ad66/cd2025_student.py"
-
-# 從 gist 取得程式碼
-add_src = open(cd2025students_url).read()
-def add(ev):
-    Ace2.editor.setValue(add_src)
-    Ace2.editor.scrollToRow(0)
-    Ace2.editor.gotoLine(0)
-    Ace2.run()
-
-# id 為 "cd2025students" 的按鈕點按時, 執行 add 方法
-doc["cd2025students"].bind('click', add)
-# 以下為運用 button2 class 的通用 gist 程式導入區
-################################## cd2025students start
-cd2025students_url = "https://gist.githubusercontent.com/snowfall-killer/61fa9780a59be3e44f8653f0a66e49dc/raw/1b1c9b3407a46b492ecc1986905cc43562c0ad66/cd2025_student.py"
-cd2025students = button2(cd2025students_url)
-doc["cd2025students"].bind("click", cd2025students.do)
-################################## cd2025students end
-################################## cd2025sap start
-cd2025sap_url = "https://gist.githubusercontent.com/snowfall-killer/012463ee43f80a2cf4aeaeb1116e6c6f/raw/0ce0658b5a62cce7ea44c14fdb83a75cf1ce9546/cd2025_students_account_pages.py"
-cd2025sap = button2(cd2025sap_url)
-doc["cd2025sap"].bind("click", cd2025sap.do)
-################################## cd2025sap end
-</script>
-</p>
-<p><!-- cd2025students 結束--></p>
-<p><!-- 用來顯示程式碼的 editor 區域 --></p>
-<div id="kw_editor2" style="width: 600px; height: 300px;"></div>
-<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
-<p><!-- 存擋表單開始 --></p>
-<form><label>Filename: <input id="kw_filename2" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src2', 'kw_filename2');" type="submit" value="Save"/></form>
-<p><!-- 存擋表單結束 --></p>
-<p></p>
-<p><!-- 執行與清除按鈕開始 --></p>
-<p><button id="kw_run2">Run</button> <button id="kw_show_console2">Output</button> <button id="kw_clear_console2">清除輸出區</button><button id="clear_bd2">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
-<p><!-- 執行與清除按鈕結束 --></p>
-<p></p>
-<p><!-- 程式執行 ouput 區 --></p>
-<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console2"></textarea></div>
-<p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
-<div id="brython_div2"></div>
-<!-- editor2 結束 --><hr/><h3>IPv6</h3>
+<p>以下將要嘗試利用程式方法列出學員的作業倉儲與網頁連結, 以及各分組的倉儲及網站連結.</p>
+<p>已知的兩段程式 (<a href="https://mde.tw/cd2025/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/2793a8a65bd810e9837e0d00ca3e2105d3d5da9c/list_stage_1.py">1</a>,<span> </span><a href="https://mde.tw/cd2025/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/2793a8a65bd810e9837e0d00ca3e2105d3d5da9c/list_stage_2.py">2</a>), 可以讀取 <a href="https://mde.tw/list/2b.txt">https://mde.tw/list/2b.txt</a> (<a href="https://github.com/mdecycu/list">https://github.com/mdecycu/list</a>), 並且各學員的學號與　Github 帳號是利用 Tab 隔開.</p>
+<p>過程中若學員 Github 帳號有更動, 可以透過 Pull Requests 要求修改.</p>
+<p>以下可直接列出:</p>
+<p><a href="https://mdecd2025.github.io/hw-scrum-1/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/113a3d7e19b36a7672a136f3731ef07b095adeef/list_2a.py">列出 2a 學員作業網站與倉儲連結</a></p>
+<p><a href="https://mdecd2025.github.io/hw-scrum-1/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/29173e8b73ad422fd7c44bcd93658a3579d63633/list_stage_3.py">列出 2b 學員作業網站與倉儲連結</a></p>
+<p><a href="https://mdecd2025.github.io/hw-scrum-1/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/a4414e311503fac8d57d4f5e44999147c54cf7fa/list_2a_group.py">列出 2a 分組網站與倉儲連結</a></p>
+<p><a href="https://mdecd2025.github.io/hw-scrum-1/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/a4414e311503fac8d57d4f5e44999147c54cf7fa/list_2b_group.py">列出 2b 分組網站與倉儲連結</a></p>
+<p>目前 cmsimde 使用 Brython 3.12.3, 嘗試更新為 3.12.4 以上版本時, 發現在靜態網頁會與 template chimper 中的 jquery 版本內容衝突, 導致無法從 URL 取下 gist 的 Brython 程式內容.</p>
+<p>之後可以測試採用 Brython 3.13.2 最新版本, 但在動態與靜態網頁執行 Brython 程式時, 可以將原始碼放入 html 頁面, 並利用 Button 直接進行存取. 可以從<span> </span><a href="https://github.com/mdecycu/cmsimde_site">https://github.com/mdecycu/cmsimde_site</a> 建立 Branch 進行測試.</p>
+<p>2b-g9組員個人網站：</p>
+<p>41023205：<a href="https://mdecd2025.github.io/hw-c-ching">hw-c-ching</a>，<a href="https://github.com/mdecd2025/hw-c-ching">hw-c-ching-repo</a></p>
+<p>41023206：<a href="https://mdecd2025.github.io/hw-tseYU000">hw-tseYU000</a>，<a href="https://github.com/mdecd2025/hw-tseYU000">hw-tseYU000-repo</a></p>
+<p>41023210：<a href="https://mdecd2025.github.io/hw-junpig10">hw-junpig10</a>，<a href="https://github.com/mdecd2025/hw-junpig10">hw-junpig10-repo</a></p>
+<p>41023232：<a href="https://mdecd2025.github.io/hw-YUN4">hw-YUN4</a>，<a href="https://github.com/mdecd2025/hw-YUN4">hw-YUN4-repo</a></p>
+<p><span></span></p><h3>IPv6</h3>
 <p>以系統管理員身分執行<br/>→create_account.bat</p>
 <p>diable_IPv4.ps1需要更改的地方(第十四行)<br/>→$ipv6Address = "2001:288:6004:17:b009"</p>
 <p>以系統管理員身分執行<br/>→ipv6set_up.bat</p>
@@ -834,9 +702,11 @@ while robot.step(timestep) != -1:
 </li>
 <li>
 <p>操作影片標題：<span style="background-color: #ffff00;">國立虎尾科技大學 - 機械設計工程系 - cd2025 Exam3-3 - 41023218</span></p>
-<p>pip install websocket-client websocket-server keyboard</p>
+<p>1.pip install websocket-client websocket-server keyboard.<br/>2.以 <span style="color: #0000ff;">webotsw --stream</span> 啟動。<br/>3.更改個人 IPv6 網址：<span style="color: #0000ff;">2001:288:6004:17:fff1:cd25:0000:b009</span>，並關閉 IPv4。<br/>4.Webots Streaming Viewer網址：<span style="color: #0000ff;">http://[2001:288:6004:17:fff1:cd25:0000:b009]:1236/index.html</span><br/> Connect to：<span style="color: #0000ff;">ws://[2001:288:6004:17:fff1:cd25:0000:b009]:1236</span><br/> 即可完成連線。<br/>5.若要連線到其他組員，修改Connect to到對方網址即可<br/>Connect to：<span style="color: #0000ff;">ws://[2001:288:6004:17:fff1:cd25:0000:b010]:1235</span><br/>6.把 youbot_cart_client.py 丟到 SciTE 裡。<br/>7.點開 Tools 欄位內 Go 執行。<br/>8.以上下左右按鍵即可控制車子移動、轉向。</p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/56ucXyeBWG4?si=axG3TLgbfOtBqd6i" title="YouTube video player" width="560"></iframe></p>
 </li>
-</ol><h1>Final</h1>
+</ol>
+<p>心得：Exam3都是訓練以IPv6遠端查看或控制Webots，基本上都是使用學校電腦完成的。</p><h1>Final</h1>
 <p><span>期末協同專案執行過程影片、簡報與 PDf 報告檔案 (六人一組) (30%)</span></p>
 <p><span>題目: <span style="background-color: #ccffcc;">Webots 動態投籃模擬系統的協同設計</span></span></p>
 <p><span>說明: </span></p>
