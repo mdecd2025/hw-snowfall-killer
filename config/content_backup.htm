@@ -48,6 +48,7 @@
 <p><a href="https://mdecd2025.github.io/hw-scrum-1/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/a4414e311503fac8d57d4f5e44999147c54cf7fa/list_2b_group.py">列出 2b 分組網站與倉儲連結</a></p>
 <p>目前 cmsimde 使用 Brython 3.12.3, 嘗試更新為 3.12.4 以上版本時, 發現在靜態網頁會與 template chimper 中的 jquery 版本內容衝突, 導致無法從 URL 取下 gist 的 Brython 程式內容.</p>
 <p>之後可以測試採用 Brython 3.13.2 最新版本, 但在動態與靜態網頁執行 Brython 程式時, 可以將原始碼放入 html 頁面, 並利用 Button 直接進行存取. 可以從<span> </span><a href="https://github.com/mdecycu/cmsimde_site">https://github.com/mdecycu/cmsimde_site</a> 建立 Branch 進行測試.</p>
+<hr/>
 <p>2b-g9組員個人網站：</p>
 <p>41023205：<a href="https://mdecd2025.github.io/hw-c-ching">hw-c-ching</a>，<a href="https://github.com/mdecd2025/hw-c-ching">hw-c-ching-repo</a></p>
 <p>41023206：<a href="https://mdecd2025.github.io/hw-tseYU000">hw-tseYU000</a>，<a href="https://github.com/mdecd2025/hw-tseYU000">hw-tseYU000-repo</a></p>
@@ -717,105 +718,8 @@ while robot.step(timestep) != -1:
 <h2>Final process</h2>
 <p>06/13：</p>
 <p>修改feed_ball_loop.py參數餵球上限：</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from controller 
-# ----------------- 參數區 -----------------
-HOOP_CENTER = [0.622, -0.103, 0.742838]
-BALL_DEF_PATTERN = re.compile(r"Sphere_\d+")
-supervisor = Supervisor()
-timestep = int(supervisor.getBasicTimeStep())
-keyboard = Keyboard()
-keyboard.enable(timestep)
-MAX_BALLS_ALLOWED = 3
-ball_count = 0
-warning_shown = False
-landed_balls = []  # [(def_name, landed_time)]
-DELETE_DELAY = 2.0  # 秒
-# ----------------- 建立靜態球體 -----------------
-def create_static_sphere(supervisor, x, y, z):
-    global waiting_ball_def, waiting_ball_info, ball_count, warning_shown
-    if ball_count &gt;= MAX_BALLS_ALLOWED:
-        if not warning_shown:
-            print(f"球數已達上限 ({MAX_BALLS_ALLOWED})，請謹慎地擊出最後一球。")
-            warning_shown = True
-        return
-
-    warning_shown = False  # 可以新增球，代表之前的提示已失效
-    def_name = generate_valid_def_name()
-    waiting_ball_def = def_name
-    r, g, b = generate_random_color()
-    world_pos = youbot_local_to_world((x, y, z))
-    waiting_ball_info = (world_pos, r, g, b)
-    create_static_ball(def_name, world_pos, r, g, b)
-    ball_count += 1
-# ----------------- 定義球落地 -----------------
-def is_ball_landed(pos, threshold_z=0.13):
-    return pos[2] &lt; threshold_z
-
-print("按 A 產生一顆靜止球，按 M 讓球變 dynamic 可擊出（自動與手動均可，多5個軌跡點，球落地後軌跡自動消失）")
-
-while supervisor.step(timestep) != -1:
-    # 1. 處理 auto_loop.py 傳來的自動訊息
-    while receiver.getQueueLength() &gt; 0:
-        msg = receiver.getString()
-        if msg == "a":
-            if waiting_ball_def is None:
-                create_static_sphere(supervisor, *default_feed_pos)
-                current_tracked_def = waiting_ball_def
-                delete_trajectory_points()
-        elif msg == "m":
-            activate_dynamic_ball()
-        # "k" 可選，通常給擊球機構用，這邊可忽略或加狀態清理
-        receiver.nextPacket()
-
-    # 2. 處理手動鍵盤控制
-    key = keyboard.getKey()
-    current_time = time.time()
-    if key == ord('A') and (current_time - last_key_time &gt;= debounce_time):
-        if waiting_ball_def is None:
-            create_static_sphere(supervisor, *default_feed_pos)
-            current_tracked_def = waiting_ball_def
-            delete_trajectory_points()
-        else:
-            print("還有一顆球等待擊出，請先擊出再產生新球。")
-        last_key_time = current_time
-    if key == ord('M') and (current_time - last_key_time &gt;= debounce_time):
-        activate_dynamic_ball()
-        last_key_time = current_time
-
-    # 3. 拋物線軌跡追蹤
-    if current_tracked_def is not None:
-        ball_node = supervisor.getFromDef(current_tracked_def)
-        if ball_node is not None:
-            pos = ball_node.getPosition()
-            if current_time - last_print_time &gt;= PRINT_INTERVAL:
-                last_print_time = current_time
-            if (not trajectory_points) or np.linalg.norm(np.array(pos) - np.array(trajectory_points[-1][0])) &gt; TRAJECTORY_POINT_STEP:
-                def_name = create_trajectory_point(pos)
-                trajectory_points.append((pos, def_name))
-                if len(trajectory_points) &gt; TRAJECTORY_MAX_POINTS:
-                    _, old_def = trajectory_points.pop(0)
-                    node = supervisor.getFromDef(old_def)
-                    if node:
-                        node.remove()
-            if is_ball_landed(pos):
-                delete_trajectory_points()
-                landed_balls.append((current_tracked_def, time.time()))
-                current_tracked_def = None
-                ball_count = max(0, ball_count - 1)
-
-
-
-        else:
-            delete_trajectory_points()
-            current_tracked_def = None
-# ----------------- 處理落地球延遲刪除 -----------------            
-    now = time.time()
-    for def_name, landed_time in landed_balls[:]:
-        if now - landed_time &gt;= DELETE_DELAY:
-            node = supervisor.getFromDef(def_name)
-            if node:
-                node.remove()
-            landed_balls.remove((def_name, landed_time))</pre>
+<p><a href="https://gist.githubusercontent.com/snowfall-killer/b2e74e09922c94dd607afc7af495bc99/raw/8f1fde9bd629e5b3ccc8cb08cb3de53dd7c22633/feed_ball_loop.py">feed_ball_loop.py</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"></pre>
 <p>Q：目前模擬結果無法刪除球sphere實體。</p><h1>Brython</h1>
 <p><button id="add1to100">1 add to 100</button></p>
 <!-- 導入 brython 程式庫 -->
