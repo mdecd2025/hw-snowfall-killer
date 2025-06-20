@@ -2,7 +2,7 @@
         <head>
         <title>cd_hw</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -142,21 +142,19 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Task << <a href='Task.html'>Previous</a> <a href='list.html'>Next</a> >> list<br /><h1>Task1</h1>
-<h4>自行製作可攜程式系統</h4>
-<p>此作業的目的在展示如何利用既有的 Python 可攜系統建立各版本的 Python 可攜環境.</p>
-<p>以下為操作步驟:</p>
+    <div id="tipue_search_content">Tutorial7相關提問 << <a href='Tutorial7相關提問.html'>Previous</a> <a href='Midterm.html'>Next</a> >> Midterm<br /><h1>Tutorial8相關提問</h1>
 <ol>
-<li>下載<span> </span><a href="http://229.cycu.org/portable_python311.7z">portable_python311.7z</a>, 展開後是一套尚未安裝 pip 的 Python 3.11 可攜程式環境.</li>
-<li>雙點擊 portable_python311 目錄中的 start_ipv6.bat 啟動可攜系統, 在 SciTE 中開啟 Y:\<a href="https://mdecd2025.github.io/hw-scrum-1/downloads/gen_python313.py">gen_python313.py</a>, 以下拉式功能表 Tools - Go 執行, 便可在 Y:\ 建立 Python313 目錄.</li>
-<li>接著修改 start_ipv6.bat, 利用 Search - Replace, Find 欄位填上 Python311, Replace 欄位填上 Python313 後, 按下 Replace All, 便可將啟動檔中所有 Python311 設定改為 Python313, 另存修改後的檔案為 start_python313.bat.</li>
-<li>接下來以 stop.bat 關閉 start_ipv6.bat 開啟的可攜系統, 改以心建立的 start_python313.bat 開啟可攜環境, 之後在命令列輸入 python, 確認目前的 Python 版本為 3.13.2 後, 利用 Ctrl + z 退出 Python 後, 利用 pip list 確認目前的 Python 3.13.2 系統尚未配置 pip 模組管理工具.</li>
-<li>在命令列中, 以 python get-pip.py 安裝 pip 工具, 完成後, 以 pip list 確認 pip.exe 已經配置完成.</li>
-<li>最後在命令列中, 以 pip install flask flask_cors bs4 lxml pelican markdown 安裝 cmsimde 網際內容管理系統啟動所需的 Python 模組後, 此可攜系統中的 Python 3.13.2 套件已經可以用來維護個人作業倉儲與分組倉儲.</li>
-<li>之後利用新版的<span> </span><a href="https://www.scintilla.org/SciTEDownload.html">SciTE</a>,<span> </span><a href="https://git-scm.com/downloads/win">Portablegit</a>,<span> </span><a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PUTTY</a>,<span> </span><a href="https://github.com/ShareX/ShareX/releases">ShareX</a>,<span> </span><a href="https://www.debugmode.com/wink.html">Wink</a>,<span> </span><a href="https://solvespace.com/download.pl">Solvespace</a>,<span> </span><a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/zoomit">Zoomit</a>,<span> </span><a href="https://learn.microsoft.com/zh-tw/sysinternals/downloads/process-explorer#download">ProcessExplorer</a><span> </span>以及原有的 tmp 及 home_ipv6, 以新的 start_python313 啟動.</li>
-</ol>
-<p>以下為操作影片:</p>
-<br />Task << <a href='Task.html'>Previous</a> <a href='list.html'>Next</a> >> list</div>
+<li>Tutorial8 的主要學習目標是什麼？<br/> A：Tutorial8 的學習目標是介紹 Webots 中 Supervisor 控制器的功能，學習如何使用它監控模擬、控制場景中其他機器人或物件，並進行自動化測試或數據紀錄。</li>
+<li>什麼是 Supervisor？在 Tutorial8 扮演什麼角色？<br/> A：Supervisor 是一種特殊的 Webots 控制器，可以存取整個模擬環境，控制所有物件的位置與狀態。在 Tutorial8 中，它負責監控 e-puck 是否到達指定目標，並可重設模擬。</li>
+<li>Supervisor 可以進行哪些操作？<br/> A：它可以存取與修改所有機器人與物件的位置、角度、狀態、感測值，重設模擬、插入新物件、記錄資料、甚至截圖或控制模擬速度。</li>
+<li>如何在 Supervisor 控制器中存取並控制其他機器人？<br/> A：使用 `getFromDef()` 搭配機器人的 DEF 名稱取得節點，接著可用 `getField()` 取得其位置、旋轉等欄位，再用 `setSFVec3f()` 或 `setSFRotation()` 修改機器人狀態。</li>
+<li>如何用 Supervisor 監測機器人是否達到目標區域？<br/> A：可持續讀取機器人的位置座標，並判斷其是否進入定義的目標區域範圍（例如使用距離判斷或範圍包含判斷）。</li>
+<li>Supervisor 如何重設模擬或重置機器人位置？<br/> A：可使用 `node.resetPhysics()` 重置物理狀態，或直接修改位置欄位並設置新的位置與方向來重置機器人。也可透過 `supervisor.simulationReset()` 重設整個模擬。</li>
+<li>Supervisor 能否獲取所有物件的座標與狀態？如何實作？<br/> A：可以。Supervisor 可透過 `getFromDef()` 或 `getRoot().getField("children")` 獲取整個場景樹，再逐一存取每個物件的座標與屬性。</li>
+<li>如何紀錄機器人模擬過程的數據供日後分析？<br/> A：可在控制器中使用 Python 或 C 寫入資料至檔案（如 `.csv`），記錄位置、感測值、速度等資訊，供離線分析或視覺化使用。</li>
+<li>Supervisor 可以如何協助自動化測試機器人行為？<br/> A：Supervisor 可批量設定初始條件、自動重設場景、多次執行任務，並在每輪模擬中記錄結果，用於大量測試與比較不同策略效果。</li>
+<li>綜合 Tutorial6~8，請說明感知（感測）、決策（控制器）、監督（Supervisor）三者如何協同運作。<br/> A：感測器（如攝影機、距離感測器）提供原始資料供控制器分析並決策行為，控制器（controller）負責根據感測資料驅動機器人運動，而 Supervisor 作為外部監督者，統籌整體模擬流程、追蹤任務完成度與進行資料收集，三者結合可實現智慧機器人系統的全流程運作。</li>
+</ol><br />Tutorial7相關提問 << <a href='Tutorial7相關提問.html'>Previous</a> <a href='Midterm.html'>Next</a> >> Midterm</div>
         
     <!-- footer -->
       <div class="container">
