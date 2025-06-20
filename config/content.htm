@@ -606,7 +606,20 @@ while robot.step(timestep) != -1:
 </ol><h2>HW2</h2>
 <p>HW2 (5%): <span style="background-color: #ffff00;">建立由 CAD 繪製零件組成的平面四連桿機構 Webots 模擬場景</span></p>
 <p>操作影片標題: 國立虎尾科技大學 - 機械設計工程系 - cd2025 HW2 - 學員學號</p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/kxtgQcIE2A8?si=r6frFNSNBVVoPC-x" title="YouTube video player" width="560"></iframe></p><h2>HW3</h2>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/kxtgQcIE2A8?si=r6frFNSNBVVoPC-x" title="YouTube video player" width="560"></iframe></p>
+<h3>Tutorial3相關提問</h3>
+<ol>
+<li>Tutorial3 的主要學習目標是什麼？<br/> A：Tutorial3 的主要學習目標是讓學習者理解並應用地面感測器（ground sensors）來判斷地面顏色，並據此改變機器人行為。</li>
+<li>在 Tutorial3 中，如何讓機器人偵測地面顏色？<br/> A：透過 e-puck 機器人下方的 ground sensors 感測地面反射光強度，不同顏色反射值不同，可用程式讀取並判斷。</li>
+<li>Ground sensors 在 Webots 裡的作用為何？<br/> A：Ground sensors 用來感測機器人底部地面反射率，常用於顏色辨識、路線追蹤與區域判斷。</li>
+<li>如何在程式中取得 ground sensor 的數值？<br/> A：需先啟用感測器（例如 `gs[i].enable(timestep)`），接著使用 `gs[i].getValue()` 取得反射值。</li>
+<li>Tutorial3 中的 e-puck 機器人如何根據地面顏色改變行為？<br/> A：透過判讀地面感測器的數值判斷是否為黑線、白區或灰區，並改變左右馬達速度以避開或追蹤。</li>
+<li>為什麼要對 ground sensor 的數值進行校正（calibration）？<br/> A：因不同地板材質或燈光會影響反射值，透過校正可準確對應特定顏色的數值範圍，提高辨識準確度。</li>
+<li>如何設定 ground sensor 的 sampling period？<br/> A：使用 `gs[i].enable(sampling_period)` 設定，`sampling_period` 一般設為模擬的 timestep（如 32 毫秒）。</li>
+<li>e-puck 機器人可以偵測哪些顏色？如何判斷？<br/> A：可偵測黑（低反射）、白（高反射）、灰（中等反射）等顏色，根據感測器輸出值與設定閾值範圍判斷。</li>
+<li>Tutorial3 如何讓 e-puck 在遇到黑線時做出反應？<br/> A：當地面感測器讀值低於某個閾值（代表黑色）時，控制程式會讓 e-puck 轉彎或停止前進。</li>
+<li>若地面顏色偵測判斷有誤，可能原因有哪些？<br/> A：可能原因包括感測器未正確啟用、數值閾值設定錯誤、燈光不均、模擬地板貼圖不一致或感測器位置偏差。</li>
+</ol><h2>HW3</h2>
 <p>HW3 (20%):<span style="background-color: #ffff00;">建立 Webots 桌上籃球遊戲機模擬系統</span></p>
 <p>操作影片標題: 國立虎尾科技大學 - 機械設計工程系 - cd2025 HW3 - 學員學號</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/fqMPgWbFGFU?si=cH6tJ-SxERLbpEfe" title="YouTube video player" width="560"></iframe></p>

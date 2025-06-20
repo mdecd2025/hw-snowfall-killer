@@ -2,7 +2,7 @@
         <head>
         <title>cd_hw</title>
         <meta charset="utf-8">
-<meta property="head" content="H1">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -142,23 +142,19 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content"> <a href='Task.html'>Next</a> >> Task<br /><h1>About</h1>
-<p>41023218</p>
-<p>課程名稱: 協同產品設計實習 - Collaborative Product Design Practice</p>
-<p>學員作業網站：<a href="https://mdecd2025.github.io/hw-snowfall-killer/content/index.html" target="_blank">https://mdecd2025.github.io/hw-snowfall-killer/content/index.html</a></p>
-<p>學員作業倉儲：<a href="https://github.com/mdecd2025/hw-snowfall-killer" target="_blank">https://github.com/mdecd2025/hw-snowfall-killer</a></p>
-<hr/>
-<p>課程代號: cd2025</p>
-<p>Teams 線上教學:</p>
-<p style="padding-left: 30px;">以 "學號@nfu.edu.tw" 登入<span> </span><a href="https://login.microsoftonline.com/">https://login.microsoftonline.com/</a><span> </span>Office 365</p>
-<p style="padding-left: 30px;">Teams 團隊代碼: <span>p5z4eku</span></p>
-<hr/>
-<p>課程評分:</p>
-<p style="padding-left: 30px;">Homework (30%) - 每週至少提交兩次與課程進度有關的內容, 完成後填回自評表單</p>
-<p style="padding-left: 30px;">Exam (40%) - 建立包含操作流程影片、心得以及提供檔案下載的網頁後填回自評表單</p>
-<p style="padding-left: 30px;">Final Report (30%) - 利用網頁內容進行簡報並提交 pdf 格式書面報告, 完成後填回自評表單</p>
-<p></p>
-<br /> <a href='Task.html'>Next</a> >> Task</div>
+    <div id="tipue_search_content">HW2 << <a href='HW2.html'>Previous</a> <a href='HW3.html'>Next</a> >> HW3<br /><h1>Tutorial3相關提問</h1>
+<ol>
+<li>Tutorial3 的主要學習目標是什麼？<br/> A：Tutorial3 的主要學習目標是讓學習者理解並應用地面感測器（ground sensors）來判斷地面顏色，並據此改變機器人行為。</li>
+<li>在 Tutorial3 中，如何讓機器人偵測地面顏色？<br/> A：透過 e-puck 機器人下方的 ground sensors 感測地面反射光強度，不同顏色反射值不同，可用程式讀取並判斷。</li>
+<li>Ground sensors 在 Webots 裡的作用為何？<br/> A：Ground sensors 用來感測機器人底部地面反射率，常用於顏色辨識、路線追蹤與區域判斷。</li>
+<li>如何在程式中取得 ground sensor 的數值？<br/> A：需先啟用感測器（例如 `gs[i].enable(timestep)`），接著使用 `gs[i].getValue()` 取得反射值。</li>
+<li>Tutorial3 中的 e-puck 機器人如何根據地面顏色改變行為？<br/> A：透過判讀地面感測器的數值判斷是否為黑線、白區或灰區，並改變左右馬達速度以避開或追蹤。</li>
+<li>為什麼要對 ground sensor 的數值進行校正（calibration）？<br/> A：因不同地板材質或燈光會影響反射值，透過校正可準確對應特定顏色的數值範圍，提高辨識準確度。</li>
+<li>如何設定 ground sensor 的 sampling period？<br/> A：使用 `gs[i].enable(sampling_period)` 設定，`sampling_period` 一般設為模擬的 timestep（如 32 毫秒）。</li>
+<li>e-puck 機器人可以偵測哪些顏色？如何判斷？<br/> A：可偵測黑（低反射）、白（高反射）、灰（中等反射）等顏色，根據感測器輸出值與設定閾值範圍判斷。</li>
+<li>Tutorial3 如何讓 e-puck 在遇到黑線時做出反應？<br/> A：當地面感測器讀值低於某個閾值（代表黑色）時，控制程式會讓 e-puck 轉彎或停止前進。</li>
+<li>若地面顏色偵測判斷有誤，可能原因有哪些？<br/> A：可能原因包括感測器未正確啟用、數值閾值設定錯誤、燈光不均、模擬地板貼圖不一致或感測器位置偏差。</li>
+</ol><br />HW2 << <a href='HW2.html'>Previous</a> <a href='HW3.html'>Next</a> >> HW3</div>
         
     <!-- footer -->
       <div class="container">
