@@ -622,16 +622,29 @@ while robot.step(timestep) != -1:
 </ol>
 <h3>Tutorial4相關提問</h3>
 <ol>
-<li>Tutorial4 的核心任務是什麼？</li>
-<li>如何讓機器人偵測牆壁或障礙物？</li>
-<li>Webots 的距離感測器（DistanceSensor）如何運作？</li>
-<li>如何在程式中啟用並讀取 DistanceSensor 的數值？</li>
-<li>Tutorial4 中，e-puck 機器人如何實作避障行為？</li>
-<li>距離感測器數值的單位是什麼？如何轉換？</li>
-<li>如何設定距離感測器的 sampling period？</li>
-<li>當機器人同時偵測到左、右兩側有障礙物時，應如何設計行為？</li>
-<li>為什麼避障時要考慮多個感測器的數值？</li>
-<li>Tutorial4 若機器人無法正確避障，可能的解決方法有哪些？</li>
+<li>Tutorial4 的核心任務是什麼？<br/> A：Tutorial4 的核心任務是讓 e-puck 機器人透過距離感測器（DistanceSensor）偵測障礙物並實作基本的避障行為。</li>
+<li>如何讓機器人偵測牆壁或障礙物？<br/> A：可使用安裝在機器人周圍的距離感測器，讀取其輸出數值來判斷前方或左右是否有物體接近。</li>
+<li>Webots 的距離感測器（DistanceSensor）如何運作？<br/> A：它透過發出紅外線或超音波來偵測前方物體的距離，物體越靠近，回傳的數值通常越高（視感測器類型而定）。</li>
+<li>如何在程式中啟用並讀取 DistanceSensor 的數值？<br/> A：需先在程式中用 `sensor.enable(timestep)` 啟用感測器，再使用 `sensor.getValue()` 讀取目前的感測數據。</li>
+<li>Tutorial4 中，e-puck 機器人如何實作避障行為？<br/> A：程式會讀取左右感測器的數值，當感測器偵測到障礙物時，會改變左右馬達的速度，轉向避開障礙物。</li>
+<li>距離感測器數值的單位是什麼？如何轉換？<br/> A：e-puck 的距離感測器回傳的是一種無單位的相對值（raw value），若需轉換成距離（如 mm），需根據官方文件或實驗進行校正對照。</li>
+<li>如何設定距離感測器的 sampling period？<br/> A：使用 `sensor.enable(sampling_period)` 方法，其中 `sampling_period` 通常設為與模擬的 timestep 相同（例如 32 毫秒）。</li>
+<li>當機器人同時偵測到左、右兩側有障礙物時，應如何設計行為？<br/> A：可設計機器人後退並轉彎，或隨機選擇一側迴避，以避免陷入無法前進的情境。</li>
+<li>為什麼避障時要考慮多個感測器的數值？<br/> A：單一感測器可能偵測盲點，透過多個感測器可獲得環境更完整資訊，有助於做出更準確的避障決策。</li>
+<li>Tutorial4 若機器人無法正確避障，可能的解決方法有哪些？<br/> A：可檢查感測器是否正確啟用、數值是否有正確閾值判斷、馬達控制邏輯是否正確，或重新調整避障演算法。</li>
+</ol>
+<h3>Tutorial5相關提問</h3>
+<ol>
+<li>Tutorial5 的主要內容主題為何？</li>
+<li>如何讓機器人依照不同地面顏色或障礙物狀態做出不同反應？</li>
+<li>Tutorial5 中如何結合多種感測器進行複雜任務？</li>
+<li>如何設計機器人巡線並同時避障？</li>
+<li>若多種感測器回報衝突訊息，程式該如何決策？</li>
+<li>在 Tutorial5 裡，機器人如何完成任務流程的狀態切換？</li>
+<li>如何在程式中設計有限狀態機（FSM）？</li>
+<li>Tutorial5 的挑戰題目有哪些？如何著手解決？</li>
+<li>若要讓機器人自主完成一個完整路徑的巡邏任務，應加入哪些功能？</li>
+<li>綜合 Tutorial3~5，請說明感測器資料融合（sensor fusion）的意義與應用。</li>
 </ol><h2>HW3</h2>
 <p>HW3 (20%):<span style="background-color: #ffff00;">建立 Webots 桌上籃球遊戲機模擬系統</span></p>
 <p>操作影片標題: 國立虎尾科技大學 - 機械設計工程系 - cd2025 HW3 - 學員學號</p>
