@@ -635,21 +635,22 @@ while robot.step(timestep) != -1:
 </ol>
 <h3>Tutorial5相關提問</h3>
 <ol>
-<li>Tutorial5 的主要內容主題為何？</li>
-<li>如何讓機器人依照不同地面顏色或障礙物狀態做出不同反應？</li>
-<li>Tutorial5 中如何結合多種感測器進行複雜任務？</li>
-<li>如何設計機器人巡線並同時避障？</li>
-<li>若多種感測器回報衝突訊息，程式該如何決策？</li>
-<li>在 Tutorial5 裡，機器人如何完成任務流程的狀態切換？</li>
-<li>如何在程式中設計有限狀態機（FSM）？</li>
-<li>Tutorial5 的挑戰題目有哪些？如何著手解決？</li>
-<li>若要讓機器人自主完成一個完整路徑的巡邏任務，應加入哪些功能？</li>
-<li>綜合 Tutorial3~5，請說明感測器資料融合（sensor fusion）的意義與應用。</li>
+<li>Tutorial5 的主要內容主題為何？<br/> A：Tutorial5 主要介紹如何結合多種感測器與狀態機設計，使機器人能根據環境變化完成更複雜的任務，例如巡線加避障。</li>
+<li>如何讓機器人依照不同地面顏色或障礙物狀態做出不同反應？<br/> A：可透過感測器數值進行判斷，地面感測器判定顏色、距離感測器偵測障礙，程式中根據輸入值調整行為邏輯。</li>
+<li>Tutorial5 中如何結合多種感測器進行複雜任務？<br/> A：透過程式將不同感測器數值整合，並用條件式或有限狀態機切換行為，例如依地面顏色決定移動方向，再以距離感測器避免碰撞。</li>
+<li>如何設計機器人巡線並同時避障？<br/> A：使用地面感測器持續追蹤路徑（如黑線），若距離感測器發現障礙物則優先啟動避障行為，避開後再返回巡線狀態。</li>
+<li>若多種感測器回報衝突訊息，程式該如何決策？<br/> A：可設計優先順序（如避障 &gt; 巡線），或使用有限狀態機決定目前應執行哪個狀態下的行為。</li>
+<li>在 Tutorial5 裡，機器人如何完成任務流程的狀態切換？<br/> A：透過條件判斷切換狀態變數，如從「巡線」進入「避障」，再回到「巡線」，形成一個任務流程的控制架構。</li>
+<li>如何在程式中設計有限狀態機（FSM）？<br/> A：定義一個狀態變數（如 `state = 0`），用 if/elif 或 switch 語句根據感測器輸入切換狀態，並在每個狀態下執行對應動作。</li>
+<li>Tutorial5 的挑戰題目有哪些？如何著手解決？<br/> A：挑戰題可能包括複雜巡邏路徑、多障礙迴避與狀態機設計等，可先拆解任務流程、畫出狀態轉換圖，再撰寫程式邏輯逐步測試。</li>
+<li>若要讓機器人自主完成一個完整路徑的巡邏任務，應加入哪些功能？<br/> A：需要具備巡線能力、避障邏輯、地標識別或狀態紀錄機制，以及巡邏結束後的任務完成判定機制。</li>
+<li>綜合 Tutorial3~5，請說明感測器資料融合（sensor fusion）的意義與應用。<br/> A：感測器資料融合是將不同來源的感測器資訊整合以提升判斷準確度，例如同時用地面感測器與距離感測器決定安全行走路線，可提升機器人反應靈敏度與智能行為。</li>
 </ol><h2>HW3</h2>
 <p>HW3 (20%):<span style="background-color: #ffff00;">建立 Webots 桌上籃球遊戲機模擬系統</span></p>
 <p>操作影片標題: 國立虎尾科技大學 - 機械設計工程系 - cd2025 HW3 - 學員學號</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/fqMPgWbFGFU?si=cH6tJ-SxERLbpEfe" title="YouTube video player" width="560"></iframe></p>
-<p>問題：目前投籃機可投籃，但是進球不會顯示得分。</p><h1>Midterm</h1>
+<p>問題：目前投籃機可投籃，但是進球不會顯示得分。</p>
+<h3>Tutorial6相關提問</h3><h1>Midterm</h1>
 <p>本課程所繳交的期中成績為學員自評之學習期望成績.</p>
 <p>期中考週的自評期望成績繳交流程:</p>
 <ol>

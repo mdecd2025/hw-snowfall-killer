@@ -649,7 +649,20 @@ while robot.step(timestep) != -1:
 <p>HW3 (20%):<span style="background-color: #ffff00;">建立 Webots 桌上籃球遊戲機模擬系統</span></p>
 <p>操作影片標題: 國立虎尾科技大學 - 機械設計工程系 - cd2025 HW3 - 學員學號</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/fqMPgWbFGFU?si=cH6tJ-SxERLbpEfe" title="YouTube video player" width="560"></iframe></p>
-<p>問題：目前投籃機可投籃，但是進球不會顯示得分。</p><h1>Midterm</h1>
+<p>問題：目前投籃機可投籃，但是進球不會顯示得分。</p>
+<h3>Tutorial6相關提問</h3>
+<ol>
+<li>Tutorial6 的主要學習主題是什麼？<br/> A：Tutorial6 主要學習如何在 Webots 中使用攝影機（Camera）裝置，並透過影像進行基本的視覺處理與反應控制。</li>
+<li>在 Tutorial6 中，e-puck 機器人新增了哪些裝置？<br/> A：新增了攝影機（Camera）裝置，可用來擷取前方影像並進行分析，如顏色辨識或物體偵測。</li>
+<li>如何在 Webots 中使用攝影機（Camera）？<br/> A：需在機器人模型中加入 Camera 裝置，並於控制器程式中啟用並讀取影像資料，用於後續處理。</li>
+<li>Camera 需要在程式中如何啟用？<br/> A：使用 `camera.enable(timestep)` 函數來啟用攝影機，並設置其更新頻率（通常為模擬時間步長）。</li>
+<li>如何取得攝影機擷取到的影像資料？<br/> A：使用 `camera.getImage()` 可取得影像位元資料，可進一步使用 `getImagePixel()` 或圖像處理函數分析內容。</li>
+<li>Tutorial6 中，機器人如何依據攝影機影像做出反應？<br/> A：機器人會分析影像中是否出現特定顏色或圖案，並依據分析結果控制馬達方向，例如偵測紅色物體並靠近。</li>
+<li>Camera 裝置可以調整哪些參數？<br/> A：可調整解析度（width、height）、視角（field of view）、更新速率（frame rate），也可設定是否啟用辨色等。</li>
+<li>影像解析度的設定會對模擬有什麼影響？<br/> A：高解析度可提供更清晰影像但會降低模擬效能，低解析度則可提升執行速度但可能犧牲辨識準確度。</li>
+<li>如何將攝影機影像儲存成圖片檔？<br/> A：可使用 `camera.saveImage("filename.png", quality)` 將當前影像畫面儲存為圖片檔案。</li>
+<li>若攝影機影像顯示異常，可能的原因有哪些？<br/> A：可能原因包括：未正確啟用攝影機、timestep 設定錯誤、讀取方式錯誤、視角遭遮蔽或解析度過低。</li>
+</ol><h1>Midterm</h1>
 <p>本課程所繳交的期中成績為學員自評之學習期望成績.</p>
 <p>期中考週的自評期望成績繳交流程:</p>
 <ol>

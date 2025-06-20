@@ -142,24 +142,19 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Task1 << <a href='Task1.html'>Previous</a> <a href='IPv6.html'>Next</a> >> IPv6<br /><h1>list</h1>
-<p>以下將要嘗試利用程式方法列出學員的作業倉儲與網頁連結, 以及各分組的倉儲及網站連結.</p>
-<p>已知的兩段程式 (<a href="https://mde.tw/cd2025/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/2793a8a65bd810e9837e0d00ca3e2105d3d5da9c/list_stage_1.py">1</a>,<span> </span><a href="https://mde.tw/cd2025/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/2793a8a65bd810e9837e0d00ca3e2105d3d5da9c/list_stage_2.py">2</a>), 可以讀取 <a href="https://mde.tw/list/2b.txt">https://mde.tw/list/2b.txt</a> (<a href="https://github.com/mdecycu/list">https://github.com/mdecycu/list</a>), 並且各學員的學號與　Github 帳號是利用 Tab 隔開.</p>
-<p>過程中若學員 Github 帳號有更動, 可以透過 Pull Requests 要求修改.</p>
-<p>以下可直接列出:</p>
-<p><a href="https://mdecd2025.github.io/hw-scrum-1/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/113a3d7e19b36a7672a136f3731ef07b095adeef/list_2a.py">列出 2a 學員作業網站與倉儲連結</a></p>
-<p><a href="https://mdecd2025.github.io/hw-scrum-1/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/29173e8b73ad422fd7c44bcd93658a3579d63633/list_stage_3.py">列出 2b 學員作業網站與倉儲連結</a></p>
-<p><a href="https://mdecd2025.github.io/hw-scrum-1/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/a4414e311503fac8d57d4f5e44999147c54cf7fa/list_2a_group.py">列出 2a 分組網站與倉儲連結</a></p>
-<p><a href="https://mdecd2025.github.io/hw-scrum-1/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/a4414e311503fac8d57d4f5e44999147c54cf7fa/list_2b_group.py">列出 2b 分組網站與倉儲連結</a></p>
-<p>目前 cmsimde 使用 Brython 3.12.3, 嘗試更新為 3.12.4 以上版本時, 發現在靜態網頁會與 template chimper 中的 jquery 版本內容衝突, 導致無法從 URL 取下 gist 的 Brython 程式內容.</p>
-<p>之後可以測試採用 Brython 3.13.2 最新版本, 但在動態與靜態網頁執行 Brython 程式時, 可以將原始碼放入 html 頁面, 並利用 Button 直接進行存取. 可以從<span> </span><a href="https://github.com/mdecycu/cmsimde_site">https://github.com/mdecycu/cmsimde_site</a> 建立 Branch 進行測試.</p>
-<hr/>
-<p>2b-g9組員個人網站：</p>
-<p>41023205：<a href="https://mdecd2025.github.io/hw-c-ching">hw-c-ching</a>，<a href="https://github.com/mdecd2025/hw-c-ching">hw-c-ching-repo</a></p>
-<p>41023206：<a href="https://mdecd2025.github.io/hw-tseYU000">hw-tseYU000</a>，<a href="https://github.com/mdecd2025/hw-tseYU000">hw-tseYU000-repo</a></p>
-<p>41023210：<a href="https://mdecd2025.github.io/hw-junpig10">hw-junpig10</a>，<a href="https://github.com/mdecd2025/hw-junpig10">hw-junpig10-repo</a></p>
-<p>41023232：<a href="https://mdecd2025.github.io/hw-YUN4">hw-YUN4</a>，<a href="https://github.com/mdecd2025/hw-YUN4">hw-YUN4-repo</a></p>
-<p><span></span></p><br />Task1 << <a href='Task1.html'>Previous</a> <a href='IPv6.html'>Next</a> >> IPv6</div>
+    <div id="tipue_search_content">HW3 << <a href='HW3.html'>Previous</a> <a href='Midterm.html'>Next</a> >> Midterm<br /><h1>Tutorial6相關提問</h1>
+<ol>
+<li>Tutorial6 的主要學習主題是什麼？<br/> A：Tutorial6 主要學習如何在 Webots 中使用攝影機（Camera）裝置，並透過影像進行基本的視覺處理與反應控制。</li>
+<li>在 Tutorial6 中，e-puck 機器人新增了哪些裝置？<br/> A：新增了攝影機（Camera）裝置，可用來擷取前方影像並進行分析，如顏色辨識或物體偵測。</li>
+<li>如何在 Webots 中使用攝影機（Camera）？<br/> A：需在機器人模型中加入 Camera 裝置，並於控制器程式中啟用並讀取影像資料，用於後續處理。</li>
+<li>Camera 需要在程式中如何啟用？<br/> A：使用 `camera.enable(timestep)` 函數來啟用攝影機，並設置其更新頻率（通常為模擬時間步長）。</li>
+<li>如何取得攝影機擷取到的影像資料？<br/> A：使用 `camera.getImage()` 可取得影像位元資料，可進一步使用 `getImagePixel()` 或圖像處理函數分析內容。</li>
+<li>Tutorial6 中，機器人如何依據攝影機影像做出反應？<br/> A：機器人會分析影像中是否出現特定顏色或圖案，並依據分析結果控制馬達方向，例如偵測紅色物體並靠近。</li>
+<li>Camera 裝置可以調整哪些參數？<br/> A：可調整解析度（width、height）、視角（field of view）、更新速率（frame rate），也可設定是否啟用辨色等。</li>
+<li>影像解析度的設定會對模擬有什麼影響？<br/> A：高解析度可提供更清晰影像但會降低模擬效能，低解析度則可提升執行速度但可能犧牲辨識準確度。</li>
+<li>如何將攝影機影像儲存成圖片檔？<br/> A：可使用 `camera.saveImage("filename.png", quality)` 將當前影像畫面儲存為圖片檔案。</li>
+<li>若攝影機影像顯示異常，可能的原因有哪些？<br/> A：可能原因包括：未正確啟用攝影機、timestep 設定錯誤、讀取方式錯誤、視角遭遮蔽或解析度過低。</li>
+</ol><br />HW3 << <a href='HW3.html'>Previous</a> <a href='Midterm.html'>Next</a> >> Midterm</div>
         
     <!-- footer -->
       <div class="container">
