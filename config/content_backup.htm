@@ -567,10 +567,10 @@ while robot.step(timestep) != -1:
 <h2>HW1</h2>
 <p>HW1 (5%): <span style="background-color: #ffff00;">建立由 Box 組成的平面四連桿機構 Webots 模擬場景</span></p>
 <p>Q：link1是否要使用pose？</p>
-<p>A：</p>
+<p>A：不需要，因為link1剛好在正Y軸。<br/>以三角函數的方式解釋，也就是說<br/> X軸座標會是(X,Y)=(sin 0°,cos 0°)<br/> Y軸座標會是(X,Y)=(sin 90°,cos 90°)</p>
 <p>操作影片標題: 國立虎尾科技大學 - 機械設計工程系 - cd2025 HW1 - 41023218</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/CqOngn4yLbw?si=hPUPc34hCKPBeFnh" title="YouTube video player" width="560"></iframe></p>
-<h3>Tutorial1相關問題</h3>
+<p>檔案：<a href="/downloads/hw1.zip">hw1.zip</a></p><h3>Tutorial1相關問題</h3>
 <ol>
 <li>在製作 HW1 之前是否實際練習 Tutorial1 與 Tutorial2？<br/> A：是，練習 Tutorial1 與 Tutorial2 可幫助熟悉 Webots 操作界面與控制器程式結構，為 HW1 的製作打下基礎。</li>
 <li>Webots 是什麼樣的軟體？它主要用途為何？<br/> A：Webots 是一款開源的 3D 機器人模擬平台，用於設計、測試與模擬各種機器人行為，常用於教育與研究領域。</li>
@@ -650,7 +650,7 @@ while robot.step(timestep) != -1:
 <p>操作影片標題: 國立虎尾科技大學 - 機械設計工程系 - cd2025 HW3 - 學員學號</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/fqMPgWbFGFU?si=cH6tJ-SxERLbpEfe" title="YouTube video player" width="560"></iframe></p>
 <p>問題：目前投籃機可投籃，但是進球不會顯示得分。</p>
-<h3>Tutorial6相關提問</h3>
+<p><span>檔案：</span><a href="/downloads/hw3.zip">hw3.zip</a></p><h3>Tutorial6相關提問</h3>
 <ol>
 <li>Tutorial6 的主要學習主題是什麼？<br/> A：Tutorial6 主要學習如何在 Webots 中使用攝影機（Camera）裝置，並透過影像進行基本的視覺處理與反應控制。</li>
 <li>在 Tutorial6 中，e-puck 機器人新增了哪些裝置？<br/> A：新增了攝影機（Camera）裝置，可用來擷取前方影像並進行分析，如顏色辨識或物體偵測。</li>
@@ -676,7 +676,19 @@ while robot.step(timestep) != -1:
 <li>若影像中有多個同色物件，程式如何選擇追蹤目標？<br/> A：可使用 OpenCV 找出所有輪廓，選擇面積最大、距離最近或位於中央偏近的位置作為追蹤目標。</li>
 <li>Tutorial7 能否應用於現實世界的機器人？需做哪些調整？<br/> A：可以應用，但需處理現實中的影像雜訊、光線變化與硬體限制，並加入更精確的校正、濾波與效能最佳化。</li>
 </ol>
-<h3>Tutorial8相關提問</h3><h1>Midterm</h1>
+<h3>Tutorial8相關提問</h3>
+<ol>
+<li>Tutorial8 的主要學習目標是什麼？<br/> A：Tutorial8 的學習目標是介紹 Webots 中 Supervisor 控制器的功能，學習如何使用它監控模擬、控制場景中其他機器人或物件，並進行自動化測試或數據紀錄。</li>
+<li>什麼是 Supervisor？在 Tutorial8 扮演什麼角色？<br/> A：Supervisor 是一種特殊的 Webots 控制器，可以存取整個模擬環境，控制所有物件的位置與狀態。在 Tutorial8 中，它負責監控 e-puck 是否到達指定目標，並可重設模擬。</li>
+<li>Supervisor 可以進行哪些操作？<br/> A：它可以存取與修改所有機器人與物件的位置、角度、狀態、感測值，重設模擬、插入新物件、記錄資料、甚至截圖或控制模擬速度。</li>
+<li>如何在 Supervisor 控制器中存取並控制其他機器人？<br/> A：使用 `getFromDef()` 搭配機器人的 DEF 名稱取得節點，接著可用 `getField()` 取得其位置、旋轉等欄位，再用 `setSFVec3f()` 或 `setSFRotation()` 修改機器人狀態。</li>
+<li>如何用 Supervisor 監測機器人是否達到目標區域？<br/> A：可持續讀取機器人的位置座標，並判斷其是否進入定義的目標區域範圍（例如使用距離判斷或範圍包含判斷）。</li>
+<li>Supervisor 如何重設模擬或重置機器人位置？<br/> A：可使用 `node.resetPhysics()` 重置物理狀態，或直接修改位置欄位並設置新的位置與方向來重置機器人。也可透過 `supervisor.simulationReset()` 重設整個模擬。</li>
+<li>Supervisor 能否獲取所有物件的座標與狀態？如何實作？<br/> A：可以。Supervisor 可透過 `getFromDef()` 或 `getRoot().getField("children")` 獲取整個場景樹，再逐一存取每個物件的座標與屬性。</li>
+<li>如何紀錄機器人模擬過程的數據供日後分析？<br/> A：可在控制器中使用 Python 或 C 寫入資料至檔案（如 `.csv`），記錄位置、感測值、速度等資訊，供離線分析或視覺化使用。</li>
+<li>Supervisor 可以如何協助自動化測試機器人行為？<br/> A：Supervisor 可批量設定初始條件、自動重設場景、多次執行任務，並在每輪模擬中記錄結果，用於大量測試與比較不同策略效果。</li>
+<li>綜合 Tutorial6~8，請說明感知（感測）、決策（控制器）、監督（Supervisor）三者如何協同運作。<br/> A：感測器（如攝影機、距離感測器）提供原始資料供控制器分析並決策行為，控制器（controller）負責根據感測資料驅動機器人運動，而 Supervisor 作為外部監督者，統籌整體模擬流程、追蹤任務完成度與進行資料收集，三者結合可實現智慧機器人系統的全流程運作。</li>
+</ol><h1>Midterm</h1>
 <p>本課程所繳交的期中成績為學員自評之學習期望成績.</p>
 <p>期中考週的自評期望成績繳交流程:</p>
 <ol>
